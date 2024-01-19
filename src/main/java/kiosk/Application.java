@@ -16,9 +16,6 @@ class Item{
 }
 
 public class Application {
-//    public static int sum = 0;
-//    public static ArrayList<Item> shoppingBasket = new ArrayList<>();
-
     public static void main(String[] args) {
         System.out.println("프로그램 실행 시작!");
         ArrayList<Item> burgerArrayList = new ArrayList<>();
@@ -39,7 +36,7 @@ public class Application {
         return scanner.nextInt();
     }
 
-    public static  void runProgram(ArrayList<Item> burgerArrayList, ArrayList<Item> sideArrayList, ArrayList<Item> drinkArrayList){
+    public static void runProgram(ArrayList<Item> burgerArrayList, ArrayList<Item> sideArrayList, ArrayList<Item> drinkArrayList){
         int input = getIntByUser();
         switch(input){
             case 1:
@@ -61,9 +58,51 @@ public class Application {
                 throw new IllegalArgumentException("잘못된 입력으로 인해 프로그램을 종료합니다.");
         }
     }
+    public static ArrayList<Item> shoppingBasket = new ArrayList<>();
+
 
     public static void printShoppingBasket() {
+        int sum = 0;
+        System.out.println("===== 장바구니 =====\n");
+        for(Item it : shoppingBasket){
+            System.out.println("- " + it.itemName + " " + it.count + "개");
+            sum += (it.count * it.price);
+        }
+        System.out.println();
+        System.out.println("====================");
+        System.out.println("1. 주문하기");
+        System.out.println("2. 수량 조절하기");
+        System.out.println("3. 삭제하기\n");
+
+        System.out.println("총 가격 :  " + sum + "원\n");
+        System.out.print("메뉴 선택 (0을 선택 시 홈으로): ");
+        int input = getIntByUser();
+
+
+        switch(input){
+            case 1:
+                order();
+                break;
+            case 2:
+                controlCount();
+                break;
+            case 3:
+                cancealOrder();
+                break;
+            default:
+                throw new IllegalArgumentException("장바구니 부분에서 잘못된 값을 입력하셨습니다.");
+        }
     }
+
+    public static void order() {
+    }
+
+    public static void controlCount(){
+    }
+
+    public static void cancealOrder(){
+    }
+
 
     public static void exitProgram() {
         System.out.println("프로그램을 종료하겠습니다.");
@@ -99,16 +138,16 @@ public class Application {
         sideArrayList.add(new Item("감자튀김", 2000, 0));
         return sideArrayList;
     }
-    public static ArrayList<Item> shoppingBasket = new ArrayList<>();
 
-    // todo 장바구니에 선택된 메뉴 담고, 가격 총합을 담는 변수 필요.  || 개수(count) 관련 건은 원함수에서 더해줬기에 신경 안 써도 됨.
     public static void addShoppingBasket(Item food){
-        shoppingBasket.add(new Item(food.itemName, food.price, food.count));g
+        food.count++;
+        shoppingBasket.add(new Item(food.itemName, food.price, food.count));
     }
 
 
     public static final int MinInputNum = 0;
     public static final int MaxInputNum = 6;
+
 
     public static void printSideMenu(ArrayList<Item> side) {
         System.out.println("=====사이드 메뉴=====");
@@ -121,7 +160,7 @@ public class Application {
         System.out.print("메뉴선택 (0을 선택 시 홈으로):");
 
         int selectInt = getIntByUser();
-        checkInputNumberRange(selectInt);
+        checkInputRange(selectInt);
 
         Item selectSide = new Item(side.get(selectInt+1).itemName, side.get(selectInt+1).price, side.get(selectInt+1).count);
         if(selectInt != MinInputNum) addShoppingBasket(selectSide);
@@ -140,7 +179,7 @@ public class Application {
         System.out.print("메뉴선택 (0을 선택 시 홈으로):");
 
         int selectInt = getIntByUser();
-        checkInputNumberRange(selectInt);
+        checkInputRange(selectInt);
 
         Item selectSide = new Item(drink.get(selectInt+1).itemName, drink.get(selectInt+1).price, drink.get(selectInt+1).count);
         if(selectInt != MinInputNum) addShoppingBasket(selectSide);
@@ -148,7 +187,7 @@ public class Application {
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
     }
 
-    public static void checkInputNumberRange(int selectInt){
+    public static void checkInputRange(int selectInt){
         if(selectInt < MinInputNum || MaxInputNum < selectInt) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
     }
 
@@ -163,7 +202,7 @@ public class Application {
         System.out.print("메뉴선택 (0을 선택 시 홈으로): ");
 
         int selectInt = getIntByUser();
-        checkInputNumberRange(selectInt);
+        checkInputRange(selectInt);
 
         Item selectSide = new Item(burger.get(selectInt+1).itemName, burger.get(selectInt+1).price, burger.get(selectInt+1).count);
         if(selectInt != MinInputNum) addShoppingBasket(selectSide);
