@@ -42,6 +42,14 @@ public class Application {
     }
 
     public static void printDrinkMenu() {
+        System.out.println("=====음료 메뉴=====");
+        System.out.println("1. 코카콜라 (2000원)");
+        System.out.println("2. 코카콜라 제로 (2000원)");
+        System.out.println("3. 펩시 (2000원)");
+        System.out.println("4. 펩시 제로 (2000원)");
+        System.out.println("5. 스프라이트 (2000원)");
+        System.out.println("6. 스프라이트 제로 (2000원)");
+        System.out.println("메뉴선택 (0을 선택 시 홈으로):");
     }
 
     public static void printBurgerMenu() {
