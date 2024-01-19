@@ -41,6 +41,14 @@ public class Application {
     }
 
     public static void printBurgerMenu() {
+        System.out.println("=====햄버거 메뉴=====");
+        System.out.println("1. 와퍼 (6900원)");
+        System.out.println("2. 큐브 스테이크 와퍼 (8900원)");
+        System.out.println("3. 콰트로 치즈 와퍼 (7900원)");
+        System.out.println("4. 몬스터 와퍼 (9300원)");
+        System.out.println("5. 통새우 와퍼 (7900원)");
+        System.out.println("6. 블랙바베큐 와퍼 (9300원)\n");
+        System.out.println("메뉴선택 (0을 선택 시 홈으로): ");
     }
 
     public static void startProgram(){
