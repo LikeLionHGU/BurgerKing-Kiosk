@@ -103,6 +103,7 @@ public class Application {
 
     // todo 장바구니에 선택된 메뉴 담고, 가격 총합을 담는 변수 필요.  || 개수(count) 관련 건은 원함수에서 더해줬기에 신경 안 써도 됨.
     public static void addShoppingBasket(Item food){
+        shoppingBasket.add(new Item(food.itemName, food.price, food.count));g
     }
 
 
