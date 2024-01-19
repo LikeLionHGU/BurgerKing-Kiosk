@@ -1,6 +1,5 @@
 package kiosk;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,15 +21,8 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println("프로그램 실행 시작!");
-
-        ArrayList<Item> burgerArrayList = new ArrayList<>();
-	    burgerArrayList = addBurger(burgerArrayList);
-        ArrayList<Item> sideArrayList = new ArrayList<>();
-        sideArrayList = addSide(sideArrayList);
-        ArrayList<Item> drinkArrayList = new ArrayList<>();
-        drinkArrayList = addDrink(drinkArrayList);
-
         printHome();
+        runProgram();
     }
 
     public static int getIntByUser(){
@@ -39,14 +31,21 @@ public class Application {
     }
 
     public static  void runProgram(){
+        ArrayList<Item> burgerArrayList = new ArrayList<>();
+        burgerArrayList = addBurger(burgerArrayList);
+        ArrayList<Item> sideArrayList = new ArrayList<>();
+        sideArrayList = addSide(sideArrayList);
+        ArrayList<Item> drinkArrayList = new ArrayList<>();
+        drinkArrayList = addDrink(drinkArrayList);
+
         int input = getIntByUser();
         switch(input){
             case 1:
-                printBurgerMenu();
+                printBurgerMenu(burgerArrayList);
             case 2:
-                printSideMenu();
+                printSideMenu(sideArrayList);
             case 3:
-                printDrinkMenu();
+                printDrinkMenu(drinkArrayList);
             case 4:
                 printShoppingBasket();
             case 5:
@@ -94,13 +93,13 @@ public class Application {
     }
 
     // todo 장바구니에 선택된 메뉴 담고, 가격 총합을 담는 변수 필요.
-    public void addFood(String name, int price, int count){
+    public void addShoppingBasket(Item food){
 
         return;
     }
 
 
-    public static void printSideMenu() {
+    public static void printSideMenu(ArrayList<Item> side) {
         System.out.println("=====사이드 메뉴=====");
         System.out.println("1. 너겟킹 (2500원)");
         System.out.println("2. 해쉬 브라운 (1800원)");
@@ -112,12 +111,12 @@ public class Application {
         int selectSide = getIntByUser();
         if(selectSide < 0 || 6 < selectSide) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
         // Todo : 장바구니에 선택된 메뉴를 한 개 담는다.
-//        if(selectSide != 0) addFood();
+//        if(selectSide != 0) addFood(side[selectSide-1]);
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
         printHome();
     }
 
-    public static void printDrinkMenu() {
+    public static void printDrinkMenu(ArrayList<Item> drink) {
         System.out.println("=====음료 메뉴=====");
         System.out.println("1. 코카콜라 (2000원)");
         System.out.println("2. 코카콜라 제로 (2000원)");
@@ -133,7 +132,7 @@ public class Application {
         printHome();
     }
 
-    public static void printBurgerMenu() {
+    public static void printBurgerMenu(ArrayList<Item> burger) {
         System.out.println("=====햄버거 메뉴=====");
         System.out.println("1. 와퍼 (6900원)");
         System.out.println("2. 큐브 스테이크 와퍼 (8900원)");
