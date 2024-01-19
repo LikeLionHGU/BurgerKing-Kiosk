@@ -2,6 +2,8 @@ package kiosk;
 
 public class Print {
 
+
+
     Input input = new Input();
 
     public void printHomeMenu() {
@@ -24,6 +26,5 @@ public class Print {
     System.out.println("\n메뉴를 골라주세요 (0을 선택 시 홈으로): ");
 
     }
-
 
 }

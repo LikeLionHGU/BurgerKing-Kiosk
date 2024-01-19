@@ -70,7 +70,7 @@ public class Controller {
 
     int result = input.inputHamburgerOrder();
     totalPrice += hamburgerPrice[result - 1];
-    if (!orderNameList.contains(hamburgerName[result])) {
+    if (!orderNameList.contains(hamburgerName[result-1])) {
 
       orderNameList.add(hamburgerName[result - 1]);
     }
@@ -81,7 +81,7 @@ public class Controller {
     print.printMenuInfo(sidemenuName, sidemenuPrice);
     int result = input.inputSidemeunOrder();
     totalPrice += sidemenuPrice[result - 1];
-    if (!orderNameList.contains(sidemenuName[result])) {
+    if (!orderNameList.contains(sidemenuName[result-1])) {
 
       orderNameList.add(sidemenuName[result - 1]);
     }
@@ -92,7 +92,7 @@ public class Controller {
     print.printMenuInfo(drinkName, drinkPrice);
     int result = input.inputDrinkOrder();
     totalPrice += drinkPrice[result - 1];
-    if (!orderNameList.contains(drinkName[result])) {
+    if (!orderNameList.contains(drinkName[result-1])) {
       orderNameList.add(drinkName[result - 1]);
     }
   }

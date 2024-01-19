@@ -35,7 +35,6 @@ public class Input {
   }
 
 
-
   public boolean isTheNumberOutOfRange(int number, int max) {
     boolean checkRange = true;
     try {
@@ -50,6 +49,8 @@ public class Input {
     }
     return checkRange;
   }
+
+
 
 
   public int getDecision() {
