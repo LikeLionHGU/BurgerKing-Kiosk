@@ -22,8 +22,8 @@ public class BurgerKingKioskIO {
     System.out.println("4. 장바구니");
     System.out.println("5. 종료\n");
     System.out.print("메뉴선택(0을 선택 시 새로고침): ");
-    return BurgerKingException.checkValidationNumberAboutLength(
-        scanner.nextInt(), MAX_MAIN_MENU_COUNT);
+    return BurgerKingException.checkIsNumberBetween(
+        scanner.nextInt(), 0,MAX_MAIN_MENU_COUNT);
   }
 
   public static int selectMenuNumber(Menu[] menus) {
@@ -32,7 +32,7 @@ public class BurgerKingKioskIO {
     }
     System.out.println();
     System.out.print("메뉴 선택(0을 선택 시 홈으로): ");
-    return BurgerKingException.checkValidationNumberAboutLength(scanner.nextInt(), menus.length);
+    return BurgerKingException.checkIsNumberBetween(scanner.nextInt(),0, menus.length);
   }
 
   public static int selectHamburgerMenu(Menu[] menus) {
@@ -73,11 +73,11 @@ public class BurgerKingKioskIO {
     System.out.println();
     System.out.println("총 가격: " + BurgerKingKioskCalculator.calculateTotalPrice(orders) + "원");
   }
-
-  public static int selectOrderFromBasket(ArrayList<Order> orders) {
+  public static int selectOrderFromBasketToChangeCount(ArrayList<Order> orders) {
+    System.out.println("\n=====수량 조절하기=====\n");
     printBasket(orders);
-    System.out.print("메뉴 선택(0을 선택 시 홈으로): ");
-    return BurgerKingException.checkValidationNumberAboutLength(scanner.nextInt(), orders.size());
+    System.out.print("수량을 조절할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): ");
+    return BurgerKingException.checkIsNumberBetween(scanner.nextInt(), 0,orders.size());
   }
 
   public static int selectBasketMenu(ArrayList<Order> orders) {
@@ -88,8 +88,8 @@ public class BurgerKingKioskIO {
     System.out.println("3. 삭제하기");
     System.out.println();
     System.out.print("메뉴 선택(0을 선택 시 홈으로): ");
-    return BurgerKingException.checkValidationNumberAboutLength(
-        scanner.nextInt(), MAX_BASKET_MENU_COUNT);
+    return BurgerKingException.checkIsNumberBetween(
+        scanner.nextInt(), 0,MAX_BASKET_MENU_COUNT);
   }
 
   public static void pay(ArrayList<Order> orders) {
@@ -109,5 +109,21 @@ public class BurgerKingKioskIO {
 
   public static void setOrderCountComplete(Order order, int count) {
     System.out.println(order.getName() + "의 수량이 " + count + "개로 변경되었습니다.");
+  }
+
+  public static int selectOrderFromBasketToChangeDelete(ArrayList<Order> orders) {
+    System.out.println("\n=====삭제하기=====\n");
+    printBasket(orders);
+    System.out.print("삭제할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): ");
+    return BurgerKingException.checkIsNumberBetween(scanner.nextInt(), 0,orders.size());
+  }
+
+  public static int checkDeleteOk(){
+    System.out.print("정말 삭제 하시겠습니까? (0: 취소 및 홈으로 1: 삭제):");
+    return BurgerKingException.checkIsNumberBetween(scanner.nextInt(), 0, 1);
+  }
+
+  public static void deleteOrderComplete(Order order) {
+    System.out.println(order.getName() + "가 삭제되었습니다.");
   }
 }
