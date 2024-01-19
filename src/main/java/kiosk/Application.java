@@ -1,5 +1,7 @@
 package kiosk;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class Item{
@@ -7,18 +9,27 @@ class Item{
     int price;
     int count;
 
-    Item(String itemName, int price, int count){
-        itemName = this.itemName;
-        price = this.price;
-        count = this.count;
+    Item(String itemName, int price){
+        this.itemName = itemName;
+        this.price = price;
+        this.count = 1;
     }
 }
 
 public class Application {
     public int sum = 0;
 
+
     public static void main(String[] args) {
         System.out.println("프로그램 실행 시작!");
+
+        ArrayList<Item> burgerArrayList = new ArrayList<>();
+	    burgerArrayList = addBurger(burgerArrayList);
+        ArrayList<Item> sideArrayList = new ArrayList<>();
+        sideArrayList = addSide(sideArrayList);
+        ArrayList<Item> drinkArrayList = new ArrayList<>();
+        drinkArrayList = addDrink(drinkArrayList);
+
         printHome();
     }
 
@@ -52,8 +63,38 @@ public class Application {
         System.exit(0);
     }
 
+    public static ArrayList<Item> addBurger(ArrayList<Item> burgerArrayList){
+        burgerArrayList.add(new Item("와퍼", 6900));
+        burgerArrayList.add(new Item("큐브 스테이크 와퍼", 8900));
+        burgerArrayList.add(new Item("콰트로 치즈 와퍼", 7900));
+        burgerArrayList.add(new Item("몬스터 와퍼", 9300));
+        burgerArrayList.add(new Item("동새우 와퍼", 7900));
+        burgerArrayList.add(new Item("블랙바베큐 와퍼", 9300));
+        return burgerArrayList;
+    }
+
+    public static ArrayList<Item> addDrink(ArrayList<Item> drinkArrayList){
+        drinkArrayList.add(new Item("코카콜라", 2000));
+        drinkArrayList.add(new Item("코카콜라 제로", 2000));
+        drinkArrayList.add(new Item("펩시", 2000));
+        drinkArrayList.add(new Item("펩시 제로", 2000));
+        drinkArrayList.add(new Item("스프라이트", 2000));
+        drinkArrayList.add(new Item("스프라이트 제로", 2000));
+        return drinkArrayList;
+    }
+
+    public static ArrayList<Item> addSide(ArrayList<Item> sideArrayList){
+        sideArrayList.add(new Item("너겟킹", 2500));
+        sideArrayList.add(new Item("해쉬 브라운", 1800));
+        sideArrayList.add(new Item("치즈스틱", 1200));
+        sideArrayList.add(new Item("어니언링", 2400));
+        sideArrayList.add(new Item("바삭킹", 3000));
+        sideArrayList.add(new Item("감자튀김", 2000));
+        return sideArrayList;
+    }
+
     // todo 장바구니에 선택된 메뉴 담고, 가격 총합을 담는 변수 필요.
-    public static void addFood(){
+    public void addFood(String name, int price, int count){
 
         return;
     }
@@ -71,7 +112,7 @@ public class Application {
         int selectSide = getIntByUser();
         if(selectSide < 0 || 6 < selectSide) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
         // Todo : 장바구니에 선택된 메뉴를 한 개 담는다.
-        if(selectSide != 0) addFood();
+//        if(selectSide != 0) addFood();
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
         printHome();
     }
