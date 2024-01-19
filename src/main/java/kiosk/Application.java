@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Application {
     public static void main(String[] args) {
         System.out.println("프로그램 실행 시작!");
-
         startProgram();
 
         Scanner scanner = new Scanner(System.in);
@@ -32,6 +31,7 @@ public class Application {
     }
 
     public static void exitProgram() {
+        System.exit(0);
     }
 
     public static void printSideMenu() {
@@ -44,13 +44,13 @@ public class Application {
     }
 
     public static void startProgram(){
-        System.out.println("====홈====");
-        System.out.println("햄버거");
-        System.out.println("사이햐드");
-        System.out.println("음료");
-        System.out.println("장바구니");
-        System.out.println("종료");
-
+        System.out.println("=====홈=====");
+        System.out.println("1. 햄버거");
+        System.out.println("2. 사이드");
+        System.out.println("3. 음료");
+        System.out.println("4. 장바구니");
+        System.out.println("5. 종료\n");
+        System.out.print("메뉴선택:");
     }
 
 }
