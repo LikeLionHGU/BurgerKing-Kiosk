@@ -13,21 +13,9 @@ public class BurgerKingKiosk {
         case 2 -> selectSideMenu();
         case 3 -> selectBeverage();
         case 4 -> {
-          switch (basketManagement()) {
-            case 0 -> {
-              continue;
-            }
-            case 1 -> {
-              BurgerKingKioskIO.GoodBye();
-              return;
-            }
-            case 2 -> {
-              basket.clear();
-              continue;
-            }
-            case 3 -> {
-              return;
-            }
+          if (basketManagement() == 1){
+            BurgerKingKioskIO.GoodBye();
+            return;
           }
         }
         case 5 -> {
@@ -75,12 +63,25 @@ public class BurgerKingKiosk {
           return 1;
         }
         case 2 -> {
-          return 2;
+          if (manageOrderCount()==0) return 0;// 0을 선택하면 홈으로
         }
         case 3 -> {
           return 3;
         }
       }
     }
+  }
+
+  private int manageOrderCount(){
+    int index=BurgerKingKioskIO.selectOrderFromBasket(basket);
+    if(index==0) return 0; // 0을 선택하면 홈으로
+    int count=BurgerKingKioskIO.selectCount();
+    setOrderCount(index-1,count);
+    return 1;
+  }
+
+  private void setOrderCount(int index, int count) {
+    basket.get(index).setCount(count);
+    BurgerKingKioskIO.setOrderCountComplete(basket.get(index), count);
   }
 }

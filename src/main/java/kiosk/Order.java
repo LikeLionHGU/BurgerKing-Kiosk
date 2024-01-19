@@ -28,4 +28,8 @@ public class Order {
   public void addCount(int count) {
     this.count += count;
   }
+
+  public void setCount(int count) {
+    this.count = count;
+  }
 }

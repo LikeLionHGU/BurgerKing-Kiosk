@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class BurgerKingKioskIO {
   private static final int MAX_MAIN_MENU_COUNT = 5;
   private static final int MAX_BASKET_MENU_COUNT = 3;
+  private static final int MAX_COUNT = 50;
+  private static final int MIN_COUNT = 1;
   private static final Scanner scanner = new Scanner(System.in);
 
   public static void printWelcomeMessage() {
@@ -98,5 +100,14 @@ public class BurgerKingKioskIO {
 
   public static void GoodBye() {
     System.out.println("이용해주셔서 감사합니다.");
+  }
+
+  public static int selectCount() {
+    System.out.print("수량을 입력하세요(1~50): ");
+    return BurgerKingException.checkIsNumberBetween(scanner.nextInt(), 1, 50);
+  }
+
+  public static void setOrderCountComplete(Order order, int count) {
+    System.out.println(order.getName() + "의 수량이 " + count + "개로 변경되었습니다.");
   }
 }
