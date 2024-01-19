@@ -22,8 +22,8 @@ public class BurgerKingMenu {
   private static final Beverage[] beverageList = {
     new Beverage("코카콜라", 2000),
     new Beverage("코카콜라 제로", 2000),
-    new Beverage("펲시", 2000),
-    new Beverage("펲시 제로", 2000),
+    new Beverage("펩시", 2000),
+    new Beverage("펩시 제로", 2000),
     new Beverage("스프라이트", 2000),
     new Beverage("스프라이트 제로", 2000),
   };
@@ -44,11 +44,11 @@ public class BurgerKingMenu {
     return hamburgerList[index];
   }
 
-    public static SideMenu getSideMenu(int index) {
-        return sideMenuList[index];
-    }
+  public static SideMenu getSideMenu(int index) {
+    return sideMenuList[index];
+  }
 
-    public static Beverage getBeverage(int index) {
-        return beverageList[index];
-    }
+  public static Beverage getBeverage(int index) {
+    return beverageList[index];
+  }
 }

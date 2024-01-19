@@ -3,7 +3,7 @@ package kiosk;
 import java.util.ArrayList;
 
 public class BurgerKingKiosk {
-  private ArrayList<Order> bascket = new ArrayList<>();
+  private ArrayList<Order> basket = new ArrayList<>();
 
   public void run() {
     BurgerKingKioskIO.printWelcomeMessage();
@@ -13,9 +13,25 @@ public class BurgerKingKiosk {
         case 2 -> selectSideMenu();
         case 3 -> selectBeverage();
         case 4 -> {
-          BurgerKingKioskIO.printAddedOrder(bascket.get(bascket.size() - 1));
+          switch (basketManagement()) {
+            case 0 -> {
+              continue;
+            }
+            case 1 -> {
+              BurgerKingKioskIO.GoodBye();
+              return;
+            }
+            case 2 -> {
+              basket.clear();
+              continue;
+            }
+            case 3 -> {
+              return;
+            }
+          }
         }
         case 5 -> {
+          BurgerKingKioskIO.GoodBye();
           return;
         }
       }
@@ -38,13 +54,33 @@ public class BurgerKingKiosk {
   }
 
   private void addOrder(Menu menu) {
-    for (Order order : bascket) {
+    for (Order order : basket) {
       if (order.getName().equals(menu.getName())) {
         order.addCount(1);
         BurgerKingKioskIO.printAddedOrder(order);
         return;
       }
     }
-    bascket.add(BurgerKingKioskIO.printAddedOrder(new Order(menu, 1)));
+    basket.add(BurgerKingKioskIO.printAddedOrder(new Order(menu, 1)));
+  }
+
+  private int basketManagement() {
+    while (true) {
+      switch (BurgerKingKioskIO.selectBasketMenu(basket)) {
+        case 0 -> {
+          return 0;
+        }
+        case 1 -> {
+          BurgerKingKioskIO.pay(basket);
+          return 1;
+        }
+        case 2 -> {
+          return 2;
+        }
+        case 3 -> {
+          return 3;
+        }
+      }
+    }
   }
 }
