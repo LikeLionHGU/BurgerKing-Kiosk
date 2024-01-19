@@ -51,11 +51,11 @@ public class Application {
 
 
     public static void shoppingBasketOption() {
-        int sum = 0;
+        int total = 0;
         System.out.println("===== 장바구니 =====\n");
         for(Item it : shoppingBasket){
             System.out.println("- " + it.itemName + " " + it.count + "개");
-            sum += (it.count * it.price);
+            total += (it.count * it.price);
         }
         System.out.println();
         System.out.println("====================");
@@ -63,7 +63,7 @@ public class Application {
         System.out.println("2. 수량 조절하기");
         System.out.println("3. 삭제하기\n");
 
-        System.out.println("총 가격 :  " + sum + "원\n");
+        System.out.println("총 가격 :  " + total + "원\n");
         System.out.print("메뉴 선택 (0을 선택 시 홈으로): ");
         int input = getIntByUser();
 
@@ -82,6 +82,17 @@ public class Application {
     }
 
     public static void controlCount(){
+        System.out.println("===== 수량 조절하기 =====\n");
+        System.out.println("현재 장바구니\n");
+        for (Item it : shoppingBasket) {
+            System.out.println("- " + it.itemName + " " + it.count + "개");
+        }
+        System.out.println();
+        System.out.print("수량을 조절할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): ");
+        int input = getIntByUser();
+        System.out.print("변경할 수량을 입력하세요:");
+        int chageCount = getIntByUser();
+        shoppingBasket.get(input-1).count = chageCount;
     }
 
     public static void cancelOrder(){
