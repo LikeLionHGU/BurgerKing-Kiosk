@@ -3,6 +3,8 @@ package kiosk;
 import java.util.Scanner;
 
 public class Application {
+    public int sum = 0;
+
     public static void main(String[] args) {
         System.out.println("프로그램 실행 시작!");
         printHome();
@@ -28,10 +30,7 @@ public class Application {
                 exitProgram();
             default:
                 throw new IllegalArgumentException("잘못된 입력으로 인해 프로그램을 종료합니다.");
-
         }
-
-
     }
 
     public static void printShoppingBasket() {
@@ -41,12 +40,12 @@ public class Application {
         System.exit(0);
     }
 
-    // 메뉴에서 원하는 메뉴를 입력하면, 해당 메뉴가 장바구니에 담김.
-    // 이때 개수는 1개!
-    // 추가로 이때, 가격 계산해주는 함수도 필요함.
+    // todo 장바구니에 선택된 메뉴 담고, 가격 총합을 담는 변수 필요.
     public static void addFood(){
 
+        return;
     }
+
 
     public static void printSideMenu() {
         System.out.println("=====사이드 메뉴=====");
@@ -59,6 +58,9 @@ public class Application {
         System.out.print("메뉴선택 (0을 선택 시 홈으로):");
         int selectSide = getIntByUser();
         if(selectSide < 0 || 6 < selectSide) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
+        // Todo : 장바구니에 선택된 메뉴를 한 개 담는다.
+        if(selectSide != 0) addFood();
+        System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
         printHome();
     }
 
@@ -73,6 +75,8 @@ public class Application {
         System.out.println("메뉴선택 (0을 선택 시 홈으로):");
         int selectDrink = getIntByUser();
         if(selectDrink < 0 || 6 < selectDrink) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
+        // Todo : 장바구니에 선택된 메뉴를 한 개 담는다.
+        System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
         printHome();
     }
 
@@ -87,6 +91,8 @@ public class Application {
         System.out.println("메뉴선택 (0을 선택 시 홈으로): ");
         int selectBurger = getIntByUser();
         if(selectBurger < 0 || 6 < selectBurger) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
+        // Todo : 장바구니에 선택된 메뉴를 한 개 담는다.
+        System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
         printHome();
     }
 
