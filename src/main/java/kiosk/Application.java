@@ -95,6 +95,8 @@ public class Application {
     }
 
     public static void order() {
+        System.out.println("주문이 성공적으로 되었습니다.");
+        System.exit(0);
     }
 
     public static void controlCount(){
