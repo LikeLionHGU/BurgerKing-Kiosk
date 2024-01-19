@@ -39,6 +39,14 @@ public class Application {
     }
 
     public static void printSideMenu() {
+        System.out.println("=====사이드 메뉴=====");
+        System.out.println("1. 너겟킹 (2500원)");
+        System.out.println("2. 해쉬 브라운 (1800원)");
+        System.out.println("3. 치즈스틱 (1200원)");
+        System.out.println("4. 어니언링 (2400원)");
+        System.out.println("5. 바삭킹 (3000원)");
+        System.out.println("6. 감자튀김 (2000원)\n");
+        System.out.print("메뉴선택 (0을 선택 시 홈으로):");
     }
 
     public static void printDrinkMenu() {
