@@ -20,7 +20,6 @@ public class Controller {
   private String[] drinkName;
   private int[] drinkPrice;
 
-
   private int totalPrice;
 
   private List<String> orderNameList;
@@ -39,9 +38,8 @@ public class Controller {
 
     totalPrice = 0;
 
-    orderNameList =  new ArrayList<>();
+    orderNameList = new ArrayList<>();
     orderNumList = new ArrayList<>();
-
   }
 
   public void controlHomeMenu(int paraDecision) {
@@ -58,10 +56,17 @@ public class Controller {
     } else if (paraDecision == 3) {
       controlDrink();
     } else if (paraDecision == 4) {
-      //    장바구니
+      controlshoppingList();
     } else if (paraDecision == 5) {
       exitCondition = false;
     }
+  }
+
+  public void controlshoppingList() {
+    System.out.println("=== 장바구니 ===\n");
+
+    print.printOrderList(orderNameList,orderNumList);
+
   }
 
   public void controlHamburger() {
@@ -70,7 +75,7 @@ public class Controller {
 
     int result = input.inputHamburgerOrder();
     totalPrice += hamburgerPrice[result - 1];
-    if (!orderNameList.contains(hamburgerName[result-1])) {
+    if (!orderNameList.contains(hamburgerName[result - 1])) {
 
       orderNameList.add(hamburgerName[result - 1]);
     }
@@ -81,9 +86,17 @@ public class Controller {
     print.printMenuInfo(sidemenuName, sidemenuPrice);
     int result = input.inputSidemeunOrder();
     totalPrice += sidemenuPrice[result - 1];
-    if (!orderNameList.contains(sidemenuName[result-1])) {
+    if (!orderNameList.contains(sidemenuName[result - 1])) {
 
       orderNameList.add(sidemenuName[result - 1]);
+      orderNumList.add(1);
+
+    }else{
+      int index = orderNameList.indexOf(sidemenuName[result - 1]);
+      int currentValue = orderNumList.get(index);
+      orderNumList.set(index, currentValue + 1);
+//      orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1]), orderNumList.get(orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1])));
+//   orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1]), 1);
     }
   }
 
@@ -92,14 +105,10 @@ public class Controller {
     print.printMenuInfo(drinkName, drinkPrice);
     int result = input.inputDrinkOrder();
     totalPrice += drinkPrice[result - 1];
-    if (!orderNameList.contains(drinkName[result-1])) {
+    if (!orderNameList.contains(drinkName[result - 1])) {
       orderNameList.add(drinkName[result - 1]);
     }
   }
-
-
-
-
 
   public String[] getHamburgerName() {
     return hamburgerName;
@@ -180,5 +189,4 @@ public class Controller {
   public void setOrderNumList(List<Integer> orderNumList) {
     this.orderNumList = orderNumList;
   }
-
 }

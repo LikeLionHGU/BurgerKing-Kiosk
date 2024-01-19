@@ -15,10 +15,9 @@ public class Application {
 
       controller.controlHomeMenu(input.getInputOfHomeMenu());
     }
-    System.out.println("총 가격은 " + controller.getTotalPrice() + "원 입니다.");
-    System.out.println("주문은 다음과 같습니다." );
 
-      System.out.println(controller.getOrderNameList());
+    print.printOrderList(controller.getOrderNameList(),controller.getOrderNumList());
+
 
 
 }
