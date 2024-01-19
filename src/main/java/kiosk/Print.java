@@ -2,6 +2,8 @@ package kiosk;
 
 public class Print {
 
+    Input input = new Input();
+
     public void printHomeMenu() {
         System.out.println("=====홈=====");
         System.out.println("1. 햄버거");
@@ -15,9 +17,13 @@ public class Print {
     }
 
     public void printMenuInfo(String[] menuName, int[] menuPrice) {
+    System.out.println();
         for (int i = 0; i < menuName.length; i++) {
             System.out.println((i + 1) + ". " + menuName[i] + "  (" + menuPrice[i] + ")");
         }
-        System.out.println("\n메뉴선택 (0을 선택 시 홈으로): ");
+    System.out.println("\n메뉴를 골라주세요 (0을 선택 시 홈으로): ");
+
     }
+
+
 }

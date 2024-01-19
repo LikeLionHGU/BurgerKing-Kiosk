@@ -8,11 +8,13 @@ public class Application {
     Controller controller = new Controller();
     Print print = new Print();
 
-
     controller.initEveryInfo();
-    print.printHomeMenu();
 
+    while (controller.exitCondition) {
+      print.printHomeMenu();
 
-    controller.controllHomeMenu(input.getInputOfHomeMenu());
+      controller.controlHomeMenu(input.getInputOfHomeMenu());
+      System.out.println(controller.getTotalPrice());
+    }
   }
 }
