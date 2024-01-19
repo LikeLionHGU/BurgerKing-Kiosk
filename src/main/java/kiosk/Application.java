@@ -21,16 +21,6 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println("프로그램 실행 시작!");
-        printHome();
-        runProgram();
-    }
-
-    public static int getIntByUser(){
-        Scanner scanner = new Scanner(System.in);
-	    return scanner.nextInt();
-    }
-
-    public static  void runProgram(){
         ArrayList<Item> burgerArrayList = new ArrayList<>();
         burgerArrayList = addBurger(burgerArrayList);
         ArrayList<Item> sideArrayList = new ArrayList<>();
@@ -38,14 +28,23 @@ public class Application {
         ArrayList<Item> drinkArrayList = new ArrayList<>();
         drinkArrayList = addDrink(drinkArrayList);
 
+        printHome(burgerArrayList, sideArrayList, drinkArrayList);
+    }
+
+    public static int getIntByUser(){
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
+
+    public static  void runProgram(ArrayList<Item> burgerArrayList, ArrayList<Item> sideArrayList, ArrayList<Item> drinkArrayList){
         int input = getIntByUser();
         switch(input){
             case 1:
-                printBurgerMenu(burgerArrayList);
+                printBurgerMenu(burgerArrayList, sideArrayList, drinkArrayList);
             case 2:
-                printSideMenu(sideArrayList);
+                printSideMenu(burgerArrayList, sideArrayList, drinkArrayList);
             case 3:
-                printDrinkMenu(drinkArrayList);
+                printDrinkMenu(burgerArrayList, sideArrayList, drinkArrayList);
             case 4:
                 printShoppingBasket();
             case 5:
@@ -99,7 +98,7 @@ public class Application {
     }
 
 
-    public static void printSideMenu(ArrayList<Item> side) {
+    public static void printSideMenu(ArrayList<Item> burgerArrayList, ArrayList<Item> sideArrayList, ArrayList<Item> drinkArrayList) {
         System.out.println("=====사이드 메뉴=====");
         System.out.println("1. 너겟킹 (2500원)");
         System.out.println("2. 해쉬 브라운 (1800원)");
@@ -110,13 +109,15 @@ public class Application {
         System.out.print("메뉴선택 (0을 선택 시 홈으로):");
         int selectInt = getIntByUser();
         if(selectInt < 0 || 6 < selectInt) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
-        Item selectSide = new Item(side.get(selectInt+1).itemName, side.get(selectInt+1).price);
+
+        Item selectSide = new Item(sideArrayList.get(selectInt+1).itemName, sideArrayList.get(selectInt+1).price);
         if(selectInt != 0) addShoppingBasket(selectSide);
+
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
-        printHome();
+        printHome(burgerArrayList, sideArrayList, drinkArrayList);
     }
 
-    public static void printDrinkMenu(ArrayList<Item> drink) {
+    public static void printDrinkMenu(ArrayList<Item> burgerArrayList, ArrayList<Item> sideArrayList, ArrayList<Item> drinkArrayList) {
         System.out.println("=====음료 메뉴=====");
         System.out.println("1. 코카콜라 (2000원)");
         System.out.println("2. 코카콜라 제로 (2000원)");
@@ -127,14 +128,15 @@ public class Application {
         System.out.print("메뉴선택 (0을 선택 시 홈으로):");
         int selectInt = getIntByUser();
         if(selectInt < 0 || 6 < selectInt) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
-        Item selectSide = new Item(drink.get(selectInt+1).itemName, drink.get(selectInt+1).price);
+
+        Item selectSide = new Item(drinkArrayList.get(selectInt+1).itemName, drinkArrayList.get(selectInt+1).price);
         if(selectInt != 0) addShoppingBasket(selectSide);
 
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
-        printHome();
+        printHome(burgerArrayList, sideArrayList, drinkArrayList);
     }
 
-    public static void printBurgerMenu(ArrayList<Item> burger) {
+    public static void printBurgerMenu(ArrayList<Item> burgerArrayList, ArrayList<Item> sideArrayList, ArrayList<Item> drinkArrayList) {
         System.out.println("=====햄버거 메뉴=====");
         System.out.println("1. 와퍼 (6900원)");
         System.out.println("2. 큐브 스테이크 와퍼 (8900원)");
@@ -145,13 +147,15 @@ public class Application {
         System.out.print("메뉴선택 (0을 선택 시 홈으로): ");
         int selectInt = getIntByUser();
         if(selectInt < 0 || 6 < selectInt) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
-        Item selectSide = new Item(burger.get(selectInt+1).itemName, burger.get(selectInt+1).price);
+
+        Item selectSide = new Item(burgerArrayList.get(selectInt+1).itemName, burgerArrayList.get(selectInt+1).price);
         if(selectInt != 0) addShoppingBasket(selectSide);
+
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
-        printHome();
+        printHome(burgerArrayList, sideArrayList, drinkArrayList);
     }
 
-    public static void printHome(){
+    public static void printHome(ArrayList<Item> burgerArrayList, ArrayList<Item> sideArrayList, ArrayList<Item> drinkArrayList){
         System.out.println("=====홈=====");
         System.out.println("1. 햄버거");
         System.out.println("2. 사이드");
@@ -159,7 +163,7 @@ public class Application {
         System.out.println("4. 장바구니");
         System.out.println("5. 종료\n");
         System.out.print("메뉴선택:");
-        runProgram();
+        runProgram(burgerArrayList, sideArrayList, drinkArrayList);
     }
 
 }
