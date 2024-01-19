@@ -1,7 +1,7 @@
 package kiosk;
 
 public class Order {
-  private Menu menu;
+  private final Menu menu;
   private int count;
 
   public Order(Menu menu, int count) {
@@ -19,5 +19,9 @@ public class Order {
 
   public int getCount() {
     return count;
+  }
+
+  public void addCount(int count) {
+    this.count += count;
   }
 }

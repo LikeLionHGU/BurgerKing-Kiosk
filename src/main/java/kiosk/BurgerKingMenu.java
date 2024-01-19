@@ -39,4 +39,16 @@ public class BurgerKingMenu {
   public static Beverage[] getBeverageList() {
     return beverageList;
   }
+
+  public static Hamburger getHamburger(int index) {
+    return hamburgerList[index];
+  }
+
+    public static SideMenu getSideMenu(int index) {
+        return sideMenuList[index];
+    }
+
+    public static Beverage getBeverage(int index) {
+        return beverageList[index];
+    }
 }
