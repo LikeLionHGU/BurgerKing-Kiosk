@@ -8,10 +8,13 @@ public class Application {
         printHome();
     }
 
-    public static  void runProgram(){
+    public static int getIntByUser(){
         Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
+	    return scanner.nextInt();
+    }
 
+    public static  void runProgram(){
+        int input = getIntByUser();
         switch(input){
             case 1:
                 printBurgerMenu();
@@ -36,6 +39,13 @@ public class Application {
 
     public static void exitProgram() {
         System.exit(0);
+    }
+
+    // 메뉴에서 원하는 메뉴를 입력하면, 해당 메뉴가 장바구니에 담김.
+    // 이때 개수는 1개!
+    // 추가로 이때, 가격 계산해주는 함수도 필요함.
+    public static void addFood(){
+
     }
 
     public static void printSideMenu() {
