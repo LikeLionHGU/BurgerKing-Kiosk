@@ -2,6 +2,18 @@ package kiosk;
 
 import java.util.Scanner;
 
+class Item{
+    String itemName;
+    int price;
+    int count;
+
+    Item(String itemName, int price, int count){
+        itemName = this.itemName;
+        price = this.price;
+        count = this.count;
+    }
+}
+
 public class Application {
     public int sum = 0;
 
