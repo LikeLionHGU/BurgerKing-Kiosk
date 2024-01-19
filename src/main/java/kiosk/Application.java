@@ -89,13 +89,26 @@ public class Application {
         }
         System.out.println();
         System.out.print("수량을 조절할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): ");
-        int input = getIntByUser();
+        int changeMenuIndex = getIntByUser();
         System.out.print("변경할 수량을 입력하세요:");
         int chageCount = getIntByUser();
-        shoppingBasket.get(input-1).count = chageCount;
+        shoppingBasket.get(changeMenuIndex-1).count = chageCount;
     }
 
     public static void cancelOrder(){
+        System.out.println("===== 삭제하기 =====\n");
+        System.out.println("현재 장바구니\n");
+        for (Item it : shoppingBasket) {
+            System.out.println("- " + it.itemName + " " + it.count + "개");
+        }
+        System.out.println();
+        System.out.print("삭제할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): ");
+        int deleteIndex = getIntByUser();
+        System.out.print("정말 삭제 하시겠습니까? (0: 취소 및 홈으로 1: 삭제): ");
+        int decideInputNum = getIntByUser();
+
+        if(decideInputNum == 0) return;
+            else if(deleteIndex == 1) shoppingBasket.remove(deleteIndex-1);
     }
 
 
