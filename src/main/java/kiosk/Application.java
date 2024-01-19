@@ -93,7 +93,7 @@ public class Application {
     }
 
     // todo 장바구니에 선택된 메뉴 담고, 가격 총합을 담는 변수 필요.
-    public void addShoppingBasket(Item food){
+    public static void addShoppingBasket(Item food){
 
         return;
     }
@@ -108,10 +108,10 @@ public class Application {
         System.out.println("5. 바삭킹 (3000원)");
         System.out.println("6. 감자튀김 (2000원)\n");
         System.out.print("메뉴선택 (0을 선택 시 홈으로):");
-        int selectSide = getIntByUser();
-        if(selectSide < 0 || 6 < selectSide) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
-        // Todo : 장바구니에 선택된 메뉴를 한 개 담는다.
-//        if(selectSide != 0) addFood(side[selectSide-1]);
+        int selectInt = getIntByUser();
+        if(selectInt < 0 || 6 < selectInt) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
+        Item selectSide = new Item(side.get(selectInt+1).itemName, side.get(selectInt+1).price);
+        if(selectInt != 0) addShoppingBasket(selectSide);
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
         printHome();
     }
@@ -124,10 +124,12 @@ public class Application {
         System.out.println("4. 펩시 제로 (2000원)");
         System.out.println("5. 스프라이트 (2000원)");
         System.out.println("6. 스프라이트 제로 (2000원)");
-        System.out.println("메뉴선택 (0을 선택 시 홈으로):");
-        int selectDrink = getIntByUser();
-        if(selectDrink < 0 || 6 < selectDrink) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
-        // Todo : 장바구니에 선택된 메뉴를 한 개 담는다.
+        System.out.print("메뉴선택 (0을 선택 시 홈으로):");
+        int selectInt = getIntByUser();
+        if(selectInt < 0 || 6 < selectInt) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
+        Item selectSide = new Item(drink.get(selectInt+1).itemName, drink.get(selectInt+1).price);
+        if(selectInt != 0) addShoppingBasket(selectSide);
+
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
         printHome();
     }
@@ -140,10 +142,11 @@ public class Application {
         System.out.println("4. 몬스터 와퍼 (9300원)");
         System.out.println("5. 통새우 와퍼 (7900원)");
         System.out.println("6. 블랙바베큐 와퍼 (9300원)\n");
-        System.out.println("메뉴선택 (0을 선택 시 홈으로): ");
-        int selectBurger = getIntByUser();
-        if(selectBurger < 0 || 6 < selectBurger) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
-        // Todo : 장바구니에 선택된 메뉴를 한 개 담는다.
+        System.out.print("메뉴선택 (0을 선택 시 홈으로): ");
+        int selectInt = getIntByUser();
+        if(selectInt < 0 || 6 < selectInt) throw new IllegalArgumentException("잘못된 메뉴를 선택하셨습니다.");
+        Item selectSide = new Item(burger.get(selectInt+1).itemName, burger.get(selectInt+1).price);
+        if(selectInt != 0) addShoppingBasket(selectSide);
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.");
         printHome();
     }
