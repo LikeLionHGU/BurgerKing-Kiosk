@@ -47,6 +47,7 @@ public class Application {
         System.out.println("5. 바삭킹 (3000원)");
         System.out.println("6. 감자튀김 (2000원)\n");
         System.out.print("메뉴선택 (0을 선택 시 홈으로):");
+        printHome();
     }
 
     public static void printDrinkMenu() {
@@ -58,6 +59,7 @@ public class Application {
         System.out.println("5. 스프라이트 (2000원)");
         System.out.println("6. 스프라이트 제로 (2000원)");
         System.out.println("메뉴선택 (0을 선택 시 홈으로):");
+        printHome();
     }
 
     public static void printBurgerMenu() {
@@ -69,7 +71,7 @@ public class Application {
         System.out.println("5. 통새우 와퍼 (7900원)");
         System.out.println("6. 블랙바베큐 와퍼 (9300원)\n");
         System.out.println("메뉴선택 (0을 선택 시 홈으로): ");
-
+        printHome();
     }
 
     public static void printHome(){
@@ -80,6 +82,7 @@ public class Application {
         System.out.println("4. 장바구니");
         System.out.println("5. 종료\n");
         System.out.print("메뉴선택:");
+        runProgram();
     }
 
 }
