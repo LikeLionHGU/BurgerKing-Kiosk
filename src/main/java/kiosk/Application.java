@@ -39,29 +39,18 @@ public class Application {
     public static void runProgram(ArrayList<Item> burgerArrayList, ArrayList<Item> sideArrayList, ArrayList<Item> drinkArrayList){
         int input = getIntByUser();
         switch(input){
-            case 1:
-                printBurgerMenu(burgerArrayList);
-                break;
-            case 2:
-                printSideMenu(sideArrayList);
-                break;
-            case 3:
-                printDrinkMenu(drinkArrayList);
-                break;
-            case 4:
-                printShoppingBasket();
-                break;
-            case 5:
-                exitProgram();
-                break;
-            default:
-                throw new IllegalArgumentException("잘못된 입력으로 인해 프로그램을 종료합니다.");
+            case 1 -> printBurgerMenu(burgerArrayList);
+            case 2 -> printSideMenu(sideArrayList);
+            case 3 -> printDrinkMenu(drinkArrayList);
+            case 4 -> shoppingBasketOption();
+            case 5 -> exitProgram();
+            default -> throw new IllegalArgumentException("잘못된 입력으로 인해 프로그램을 종료합니다.");
         }
     }
     public static ArrayList<Item> shoppingBasket = new ArrayList<>();
 
 
-    public static void printShoppingBasket() {
+    public static void shoppingBasketOption() {
         int sum = 0;
         System.out.println("===== 장바구니 =====\n");
         for(Item it : shoppingBasket){
@@ -80,17 +69,10 @@ public class Application {
 
 
         switch(input){
-            case 1:
-                order();
-                break;
-            case 2:
-                controlCount();
-                break;
-            case 3:
-                cancealOrder();
-                break;
-            default:
-                throw new IllegalArgumentException("장바구니 부분에서 잘못된 값을 입력하셨습니다.");
+            case 1 -> order();
+            case 2 -> controlCount();
+            case 3 -> cancelOrder();
+            default -> throw new IllegalArgumentException("장바구니 부분에서 잘못된 값을 입력하셨습니다.");
         }
     }
 
@@ -102,7 +84,7 @@ public class Application {
     public static void controlCount(){
     }
 
-    public static void cancealOrder(){
+    public static void cancelOrder(){
     }
 
 
