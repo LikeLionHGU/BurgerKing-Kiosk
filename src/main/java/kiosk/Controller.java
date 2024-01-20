@@ -30,6 +30,9 @@ public class Controller {
 
   private List<Integer> orderPriceList;
 
+
+
+  private boolean hasOrder = true ;
   private final int MAX_ORDER_NUMBER = 50;
 
   public Controller() {
@@ -65,6 +68,7 @@ public class Controller {
       controlshoppingList();
     } else if (paraDecision == 5) {
       exitCondition = false;
+      hasOrder = false;
     }
   }
 
@@ -313,5 +317,13 @@ public class Controller {
 
   public void setOrderPriceList(List<Integer> orderPriceList) {
     this.orderPriceList = orderPriceList;
+  }
+
+  public boolean isHasOrder() {
+    return hasOrder;
+  }
+
+  public void setHasOrder(boolean hasOrder) {
+    this.hasOrder = hasOrder;
   }
 }

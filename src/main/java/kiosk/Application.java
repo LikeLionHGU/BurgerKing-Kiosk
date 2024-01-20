@@ -14,10 +14,13 @@ public class Application {
 
       controller.controlHomeMenu(input.getInputOfHomeMenu());
     }
+    if (controller.isHasOrder()) {
+      System.out.println("== 결제중입니다... ==");
+      System.out.println("== ... ==");
 
-    System.out.println("== 결제중입니다... ==");
-    System.out.println("== ... ==");
-
-    controller.assignWaitingNumber();
+      controller.assignWaitingNumber();
+    } else{
+      System.out.println("주문을 종료합니다");
+    }
   }
 }
