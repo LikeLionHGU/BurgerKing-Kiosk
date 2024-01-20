@@ -18,7 +18,6 @@ public class FunctionAboutFirstInput {
 	public void printBurgerMenu(ArrayList<Item> burger) {
 		ContactByUser contactByUser = new ContactByUser();
 		CheckException checkException = new CheckException();
-		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
 
 		System.out.println("=====햄버거 메뉴=====");
 		System.out.println("1. 와퍼 (6900원)");
@@ -34,9 +33,17 @@ public class FunctionAboutFirstInput {
 
 		if(selectInt == MinInputNum)  return;
 
+		checkInShoppingBasket(burger, selectInt);
+
+		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
+	}
+
+	public void checkInShoppingBasket(ArrayList<Item> food, int selectInt ){
+		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
+
 		boolean isBurgerExist = false;
 		for(int i = 0 ; i < Application.shoppingBasket.size(); i++){
-			if(burger.get(selectInt-1).itemName.equals(Application.shoppingBasket.get(i).itemName)){
+			if(food.get(selectInt-1).itemName.equals(Application.shoppingBasket.get(i).itemName)){
 				Application.shoppingBasket.get(i).count++;
 				isBurgerExist = true;
 				break;
@@ -44,11 +51,11 @@ public class FunctionAboutFirstInput {
 		}
 
 		if(!isBurgerExist) {
-			Item selectSide = new Item(burger.get(selectInt-1).itemName, burger.get(selectInt-1).price);
+			Item selectSide = new Item(food.get(selectInt-1).itemName, food.get(selectInt-1).price);
 			methodAboutShoppingBasket.addShoppingBasket(selectSide);
 		}
 
-		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
+		return;
 	}
 
 	public void printSideMenu(ArrayList<Item> side) {
@@ -70,19 +77,7 @@ public class FunctionAboutFirstInput {
 
 		if(selectInt == MinInputNum)  return;
 
-		boolean isSideExist = false;
-		for(int i = 0 ; i < Application.shoppingBasket.size(); i++){
-			if(side.get(selectInt-1).itemName.equals(Application.shoppingBasket.get(i).itemName)){
-				Application.shoppingBasket.get(i).count++;
-				isSideExist = true;
-				break;
-			}
-		}
-
-		if(!isSideExist) {
-			Item selectSide = new Item(side.get(selectInt-1).itemName, side.get(selectInt-1).price);
-			methodAboutShoppingBasket.addShoppingBasket(selectSide);
-		}
+		checkInShoppingBasket(side, selectInt);
 
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
@@ -106,19 +101,7 @@ public class FunctionAboutFirstInput {
 
 		if(selectInt == MinInputNum)  return;
 
-		boolean isDrinkExist = false;
-		for(int i = 0 ; i < Application.shoppingBasket.size(); i++){
-			if(drink.get(selectInt-1).itemName.equals(Application.shoppingBasket.get(i).itemName)){
-				Application.shoppingBasket.get(i).count++;
-				isDrinkExist = true;
-				break;
-			}
-		}
-
-		if(!isDrinkExist) {
-			Item selectSide = new Item(drink.get(selectInt-1).itemName, drink.get(selectInt-1).price);
-			methodAboutShoppingBasket.addShoppingBasket(selectSide);
-		}
+		checkInShoppingBasket(drink, selectInt);
 
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
