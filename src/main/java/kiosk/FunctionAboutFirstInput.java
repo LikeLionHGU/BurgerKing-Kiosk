@@ -131,14 +131,15 @@ public class FunctionAboutFirstInput {
 		return total;
 	}
 
-	// ToDo: 물품이 선택되었으면, 해당 물품 count 확인. ->  개수가 50개가 넘어가면 "단일 물품의 최대 수량은 50개입니다. 처음부터 주문을 다시 해주세요." 라는 exception 처리 해주기
 	public void editCountInShoppingBasket(ArrayList<Item> food, int selectInt){
 		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
+		CheckException checkException = new CheckException();
 
 		boolean isFoodExist = false;
 		for(int i = 0 ; i < Application.shoppingBasket.size(); i++){
 			if(food.get(selectInt-1).itemName.equals(Application.shoppingBasket.get(i).itemName)){
 				Application.shoppingBasket.get(i).count++;
+				checkException.checkInputRange(Application.shoppingBasket.get(i).count);
 				isFoodExist = true;
 				break;
 			}

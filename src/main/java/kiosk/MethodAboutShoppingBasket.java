@@ -27,7 +27,8 @@ public class MethodAboutShoppingBasket {
 		System.out.print("변경할 수량을 입력하세요:");
 		int chageCount = contactByUser.getIntByUser();
 
-		checkException.checkCountByUserRange(chageCount);
+		checkException.checkCountByUserRangeMax(chageCount);
+		checkException.checkCountByUserRangeMin(chageCount);
 
 		Application.shoppingBasket.get(changeMenuIndex-1).count = chageCount;
 
