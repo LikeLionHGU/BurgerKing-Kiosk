@@ -1,7 +1,6 @@
 package kiosk;
 import java.util.ArrayList;
 
-// todo: testcase 만들기
 
 public class Application {
     public static ArrayList<Item> shoppingBasket = new ArrayList<>();
