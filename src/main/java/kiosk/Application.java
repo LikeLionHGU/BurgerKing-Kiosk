@@ -1,7 +1,6 @@
 package kiosk;
 import java.util.ArrayList;
 
-// todo: 예외들 확인하기
 // todo: testcase 만들기
 
 public class Application {

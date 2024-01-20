@@ -48,6 +48,8 @@ public class MethodAboutShoppingBasket {
 
 		int decideByUser = contactByUser.reconfirmByUser();
 		if(decideByUser == 1) Application.shoppingBasket.remove(deleteMenuIndex-1);
+
+	    System.out.println("삭제를 완료했습니다.\n");
 	}
 
 	public void addShoppingBasket(Item food){
