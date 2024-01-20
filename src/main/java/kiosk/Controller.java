@@ -106,6 +106,7 @@ public class Controller {
     orderPriceList.remove(index - 1);
     orderNameList.remove(index - 1);
     recalculateTotalPrice();
+    controlshoppingList();
   }
 
   public void controlNumOfOrder() {
