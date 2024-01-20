@@ -8,8 +8,7 @@ public class Controller {
   Print print = new Print();
   Input input = new Input();
 
-
-  private boolean exitCondition =true;
+  private boolean exitCondition = true;
 
   private String[] pickedMenu;
 
@@ -28,7 +27,7 @@ public class Controller {
 
   private List<Integer> orderNumList;
 
-
+  private List<Integer> orderPriceList;
 
   public void initEveryInfo() {
     hamburgerName = new String[] {"와퍼", "큐브 스테이크 와퍼", "콰트로 치즈 와퍼", "몬스터 와퍼", "통새우 와퍼", "블랙바베큐 와퍼"};
@@ -44,6 +43,7 @@ public class Controller {
 
     orderNameList = new ArrayList<>();
     orderNumList = new ArrayList<>();
+    orderPriceList = new ArrayList<>();
   }
 
   public void controlHomeMenu(int paraDecision) {
@@ -68,19 +68,31 @@ public class Controller {
   public void controlshoppingList() {
     System.out.println("\n=== 장바구니 ===\n");
 
-    print.printOrderList(orderNameList,orderNumList,totalPrice);
+    print.printOrderList(orderNameList, orderNumList, totalPrice);
     int result = input.inputShoppingOrder();
 
-    if(result ==0){
+    if (result == 0) {
       print.printHomeMenu();
-    }else if(result ==1){
-      exitCondition=false;
-    }else if(result ==2){
-      //수량 조절
-    }else if(result ==3){
-      //삭제
+    } else if (result == 1) {
+      exitCondition = false;
+    } else if (result == 2) {
+      // 수량 조절
+    } else if (result == 3) {
+      // 삭제
     }
   }
+
+  public void controlNumOfOrder() {
+    System.out.println("\n 현재 장바구니");
+    print.printOrderList(orderNameList, orderNumList, totalPrice);
+    int index = input.inputIndexOfOrder(orderNameList.size());
+    int num = input.inputNumberOfShopping();
+
+    orderNumList.set(index, num);
+    reCalculateTotalPrice(index, num);
+  }
+
+  public void reCalculateTotalPrice(int index, int number) {}
 
   public void controlHamburger() {
     System.out.println("\n=== 햄버거 ===");
@@ -90,11 +102,12 @@ public class Controller {
     if (result == 0) {
       print.printHomeMenu();
     } else {
-      totalPrice += hamburgerPrice[result - 1];
+      //      totalPrice += hamburgerPrice[result - 1];
       if (!orderNameList.contains(hamburgerName[result - 1])) {
 
         orderNameList.add(hamburgerName[result - 1]);
         orderNumList.add(1);
+        orderPriceList.add(hamburgerPrice[result - 1]);
 
       } else {
         int index = orderNameList.indexOf(hamburgerName[result - 1]);
@@ -102,7 +115,9 @@ public class Controller {
         orderNumList.set(index, currentValue + 1);
       }
     }
-    }
+    calculateTotalPrice();
+
+  }
 
   public void controlSidemenu() {
     System.out.println("\n=== 사이드 ===");
@@ -111,23 +126,21 @@ public class Controller {
     if (result == 0) {
       print.printHomeMenu();
     } else {
-      totalPrice += sidemenuPrice[result - 1];
+//      totalPrice += sidemenuPrice[result - 1];
       if (!orderNameList.contains(sidemenuName[result - 1])) {
 
         orderNameList.add(sidemenuName[result - 1]);
         orderNumList.add(1);
+        orderPriceList.add(sidemenuPrice[result - 1]);
 
       } else {
         int index = orderNameList.indexOf(sidemenuName[result - 1]);
         int currentValue = orderNumList.get(index);
         orderNumList.set(index, currentValue + 1);
-        //      orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1]),
-        // orderNumList.get(orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1])));
-        //   orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1]), 1);
-
       }
     }
-    }
+    calculateTotalPrice();
+  }
 
   public void controlDrink() {
     System.out.println("\n=== 음료수 ===");
@@ -136,11 +149,12 @@ public class Controller {
     if (result == 0) {
       print.printHomeMenu();
     } else {
-      totalPrice += drinkPrice[result - 1];
+//      totalPrice += drinkPrice[result - 1];
       if (!orderNameList.contains(drinkName[result - 1])) {
 
         orderNameList.add(drinkName[result - 1]);
         orderNumList.add(1);
+        orderPriceList.add(drinkPrice[result - 1]);
 
       } else {
         int index = orderNameList.indexOf(drinkName[result - 1]);
@@ -148,7 +162,17 @@ public class Controller {
         orderNumList.set(index, currentValue + 1);
       }
     }
+    calculateTotalPrice();
+
+  }
+
+  public void calculateTotalPrice(){
+    int[] priceListArr = orderPriceList.stream().mapToInt(i -> i).toArray();
+
+    for(int i=0; i<priceListArr.length;i++){
+      totalPrice += priceListArr[i];
     }
+  }
 
   public String[] getHamburgerName() {
     return hamburgerName;

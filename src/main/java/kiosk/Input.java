@@ -15,6 +15,7 @@ public class Input {
   private int shoppingOption;
   private final int MAX_ORDER_NUMBER = 6;
   private final int MAX_SHOPPING_ORDER_NUMBER = 3;
+  private final int MAX_NUMBER_OF_ORDER = 50;
 
   public int getInputOfHomeMenu() {
     decision = scanner.nextInt();
@@ -22,7 +23,7 @@ public class Input {
     return decision;
   }
 
-  public int inputHamburgerOrder(){
+  public int inputHamburgerOrder() {
     hamburgerOrder = scanner.nextInt();
 
     if (isTheNumberOutOfRange(hamburgerOrder, MAX_ORDER_NUMBER)) {
@@ -32,7 +33,7 @@ public class Input {
     return hamburgerOrder;
   }
 
-  public int inputSidemeunOrder(){
+  public int inputSidemeunOrder() {
     sidemeunOrder = scanner.nextInt();
 
     if (isTheNumberOutOfRange(hamburgerOrder, MAX_ORDER_NUMBER)) {
@@ -41,7 +42,7 @@ public class Input {
     return sidemeunOrder;
   }
 
-  public int inputDrinkOrder(){
+  public int inputDrinkOrder() {
     drinkOrder = scanner.nextInt();
     if (isTheNumberOutOfRange(drinkOrder, MAX_ORDER_NUMBER)) {
       System.exit(0);
@@ -50,16 +51,50 @@ public class Input {
     return drinkOrder;
   }
 
-  public int inputShoppingOrder(){
+  public int inputShoppingOrder() {
 
     shoppingOption = scanner.nextInt();
     if (isTheNumberOutOfRange(shoppingOption, MAX_SHOPPING_ORDER_NUMBER)) {
       System.exit(0);
     }
 
-    return drinkOrder;
+    return shoppingOption;
   }
 
+  public int inputIndexOfOrder(int length) {
+    shoppingOption = scanner.nextInt();
+    if (isTheNumberOutOfRange(shoppingOption, length)) {
+      System.exit(0);
+    }
+
+    return shoppingOption;
+  }
+
+  public int inputNumberOfShopping() {
+
+    shoppingOption = scanner.nextInt();
+
+    if (isMoreThanFifty(shoppingOption)) {
+      System.exit(0);
+
+    }
+    return shoppingOption;
+  }
+
+  public boolean isMoreThanFifty(int number) {
+    boolean checkNum = true;
+    try {
+      if (number > MAX_NUMBER_OF_ORDER) {
+        throw new IllegalArgumentException();
+      } else {
+        checkNum = false;
+        return checkNum;
+      }
+    } catch (IllegalArgumentException e) {
+      System.out.println("\n === 최대 주문 가능 개수는 [ 50개 ] 입니다. ===");
+    }
+    return checkNum;
+  }
 
   public boolean isTheNumberOutOfRange(int number, int max) {
     boolean checkRange = true;
@@ -75,9 +110,6 @@ public class Input {
     }
     return checkRange;
   }
-
-
-
 
   public int getDecision() {
     return decision;
