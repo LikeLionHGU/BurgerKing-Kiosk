@@ -71,15 +71,15 @@ public class Input {
     return shoppingOption;
   }
 
-  public int comfirmToDelete(String orderName){
+  public int comfirmToDelete(String orderName) {
     int comfirm;
-    System.out.println(orderName+" -  삭제하시겠습니까? (예 = 1  / 아니요 = 0 )");
+    System.out.println(orderName + " -  삭제하시겠습니까? (예 = 1  / 아니요 = 0 )");
     comfirm = scanner.nextInt();
-    try{
-    if(comfirm ==0 || comfirm==1){
-      throw new IllegalArgumentException();
-    }
-    }catch (IllegalArgumentException e) {
+    try {
+      if (comfirm == 0 || comfirm == 1) {
+        throw new IllegalArgumentException();
+      }
+    } catch (IllegalArgumentException e) {
       System.out.println("\n === [ 예=1 / 아니오 0 ] 입니다.  ===");
     }
     return comfirm;
@@ -91,7 +91,6 @@ public class Input {
 
     if (isMoreThanFifty(shoppingOption)) {
       System.exit(0);
-
     }
     return shoppingOption;
   }

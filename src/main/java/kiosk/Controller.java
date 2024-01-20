@@ -29,6 +29,8 @@ public class Controller {
 
   private List<Integer> orderPriceList;
 
+  private final int MAX_ORDER_NUMBER = 50;
+
   public void initEveryInfo() {
     hamburgerName = new String[] {"와퍼", "큐브 스테이크 와퍼", "콰트로 치즈 와퍼", "몬스터 와퍼", "통새우 와퍼", "블랙바베큐 와퍼"};
     hamburgerPrice = new int[] {6900, 8900, 7900, 9300, 7900, 9300};
@@ -82,28 +84,24 @@ public class Controller {
     }
   }
 
-
-  public void controlDeleteOrder(){
+  public void controlDeleteOrder() {
     System.out.println("\n == 삭제하기 == ");
     print.printOrderList(orderNameList, orderNumList);
     System.out.println("삭제할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): \n");
 
     int index = input.inputIndexOfOrder(orderNameList.size());
 
-    if(index ==0){
+    if (index == 0) {
       print.printHomeMenu();
     }
 
-    int confirmDelete = input.comfirmToDelete(orderNameList.get(index - 1));
+    int confirmToDelete = input.comfirmToDelete(orderNameList.get(index - 1));
 
-    orderNumList.remove(index-1);
-    orderPriceList.remove(index-1);
-    orderNameList.remove(index-1);
-    System.out.println("삭제되었습니다.");
+    orderNumList.remove(index - 1);
+    orderPriceList.remove(index - 1);
+    orderNameList.remove(index - 1);
     recalculateTotalPrice();
-    System.out.println("재계산 완료되었습니다.");
   }
-
 
   public void controlNumOfOrder() {
     System.out.println("\n == 수량 조절하기 == ");
@@ -112,16 +110,14 @@ public class Controller {
 
     int index = input.inputIndexOfOrder(orderNameList.size());
 
-    if(index ==0){
+    if (index == 0) {
       print.printHomeMenu();
     }
 
     int num = input.inputNumberOfShopping();
 
-    orderNumList.set(index-1, num);
-    System.out.println("추가되었습니다.");
+    orderNumList.set(index - 1, num);
     recalculateTotalPrice();
-    System.out.println("재계산 완료되었습니다.");
   }
 
   public void controlHamburger() {
@@ -142,6 +138,8 @@ public class Controller {
       } else {
         int index = orderNameList.indexOf(hamburgerName[result - 1]);
         int currentValue = orderNumList.get(index);
+        restrictNumOfOrder(orderNumList.get(index), 1);
+
         orderNumList.set(index, currentValue + 1);
       }
     }
@@ -164,6 +162,7 @@ public class Controller {
       } else {
         int index = orderNameList.indexOf(sidemenuName[result - 1]);
         int currentValue = orderNumList.get(index);
+        restrictNumOfOrder(orderNumList.get(index - 1), 1);
         orderNumList.set(index, currentValue + 1);
       }
     }
@@ -186,6 +185,8 @@ public class Controller {
       } else {
         int index = orderNameList.indexOf(drinkName[result - 1]);
         int currentValue = orderNumList.get(index);
+        restrictNumOfOrder(orderNumList.get(index), 1);
+
         orderNumList.set(index, currentValue + 1);
       }
     }
@@ -194,23 +195,23 @@ public class Controller {
   public void recalculateTotalPrice() {
     int[] priceListArr = orderPriceList.stream().mapToInt(i -> i).toArray();
     int[] priceNumArr = orderNumList.stream().mapToInt(i -> i).toArray();
-    int sum=0;
+    int sum = 0;
     for (int i = 0; i < priceListArr.length; i++) {
-      sum += priceListArr[i]*priceNumArr[i];
+      sum += priceListArr[i] * priceNumArr[i];
     }
     totalPrice = sum;
   }
 
-
-
-
-
-
-
-
-
-
-
+  public void restrictNumOfOrder(int numberInList, int add) {
+    try {
+      if (numberInList + add > MAX_ORDER_NUMBER) {
+        throw new IllegalArgumentException();
+      }
+    } catch (IllegalArgumentException e) {
+      System.out.println("\n === 한 메뉴는 최대 50개까지만 주문 가능합니다.  ===");
+      System.exit(0);
+    }
+  }
 
   public String[] getHamburgerName() {
     return hamburgerName;
@@ -298,5 +299,13 @@ public class Controller {
 
   public void setExitCondition(boolean exitCondition) {
     this.exitCondition = exitCondition;
+  }
+
+  public List<Integer> getOrderPriceList() {
+    return orderPriceList;
+  }
+
+  public void setOrderPriceList(List<Integer> orderPriceList) {
+    this.orderPriceList = orderPriceList;
   }
 }

@@ -54,8 +54,5 @@ public class Print {
       System.out.println(i + 1 + ". " + nameListArr[i] + " " + numListArr[i] + "개");
     }
     System.out.println("\n ==========================");
-
-
-
   }
 }
