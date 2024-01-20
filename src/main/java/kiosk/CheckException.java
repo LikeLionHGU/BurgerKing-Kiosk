@@ -10,6 +10,7 @@ public class CheckException {
 	}
 
 	public void checkSelectIndexByUserRange(int index){
-		if(index < 0 || Application.shoppingBasket.size()-1 < index ) throw new IllegalArgumentException("메뉴 번호를 잘못 입력하셨습니다. 처음 주문창으로 돌아갑니다.");
+		if(index < 0 || Application.shoppingBasket.size() < index ) throw new IllegalArgumentException("메뉴 번호를 잘못 입력하셨습니다. 처음 주문창으로 돌아갑니다.");
 	}
+
 }

@@ -33,7 +33,7 @@ public class FunctionAboutFirstInput {
 
 		if(selectInt == MinInputNum)  return;
 
-		checkInShoppingBasket(burger, selectInt);
+		editCountInShoppingBasket(burger, selectInt);
 
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
@@ -57,7 +57,7 @@ public class FunctionAboutFirstInput {
 
 		if(selectInt == MinInputNum)  return;
 
-		checkInShoppingBasket(side, selectInt);
+		editCountInShoppingBasket(side, selectInt);
 
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
@@ -81,7 +81,7 @@ public class FunctionAboutFirstInput {
 
 		if(selectInt == MinInputNum)  return;
 
-		checkInShoppingBasket(drink, selectInt);
+		editCountInShoppingBasket(drink, selectInt);
 
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
@@ -89,8 +89,6 @@ public class FunctionAboutFirstInput {
 	public void shoppingBasketOption() {
 		ContactByUser contactByUser = new ContactByUser();
 		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
-
-		if(Application.shoppingBasket.isEmpty())    throw new IllegalArgumentException("장바구니가 비었습니다. 접근할 수 없습니다.");
 
 		System.out.println("===== 장바구니 =====");
 
@@ -134,7 +132,7 @@ public class FunctionAboutFirstInput {
 	}
 
 	// ToDo: 물품이 선택되었으면, 해당 물품 count 확인. ->  개수가 50개가 넘어가면 "단일 물품의 최대 수량은 50개입니다. 처음부터 주문을 다시 해주세요." 라는 exception 처리 해주기
-	public void checkInShoppingBasket(ArrayList<Item> food, int selectInt){
+	public void editCountInShoppingBasket(ArrayList<Item> food, int selectInt){
 		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
 
 		boolean isFoodExist = false;

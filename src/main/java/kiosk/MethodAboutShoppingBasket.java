@@ -24,7 +24,6 @@ public class MethodAboutShoppingBasket {
 		Application.shoppingBasket.get(changeMenuIndex-1).count = chageCount;
 	}
 
-	// todo: ShoppingBasket에 아무것도 없는데, 삭제하려고 하면 error 띄워 (이건 수량 조절하기도 마찬가지임. 주문하기도 마찬가지임.)
 	public void cancelOrder(){
 		ContactByUser contactByUser = new ContactByUser();
 		FunctionAboutFirstInput functionAboutFirstInput = new FunctionAboutFirstInput();
