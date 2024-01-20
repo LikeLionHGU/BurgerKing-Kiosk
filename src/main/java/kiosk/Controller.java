@@ -98,15 +98,17 @@ public class Controller {
 
     if (index == 0) {
       print.printHomeMenu();
+      controlHomeMenu(input.getInputOfHomeMenu());
+    } else {
+
+      int confirmToDelete = input.comfirmToDelete(orderNameList.get(index - 1));
+
+      orderNumList.remove(index - 1);
+      orderPriceList.remove(index - 1);
+      orderNameList.remove(index - 1);
+      recalculateTotalPrice();
+      controlshoppingList();
     }
-
-    int confirmToDelete = input.comfirmToDelete(orderNameList.get(index - 1));
-
-    orderNumList.remove(index - 1);
-    orderPriceList.remove(index - 1);
-    orderNameList.remove(index - 1);
-    recalculateTotalPrice();
-    controlshoppingList();
   }
 
   public void controlNumOfOrder() {
@@ -118,15 +120,17 @@ public class Controller {
 
     if (index == 0) {
       print.printHomeMenu();
+      controlHomeMenu(input.getInputOfHomeMenu());
+
+    } else {
+
+      int num = input.inputNumberOfShopping();
+
+      orderNumList.set(index - 1, num);
+      recalculateTotalPrice();
+      controlshoppingList();
     }
-
-    int num = input.inputNumberOfShopping();
-
-    orderNumList.set(index - 1, num);
-    recalculateTotalPrice();
-    controlshoppingList();
-  }
-
+}
   public void controlHamburger() {
     System.out.println("\n=== 햄버거 ===");
     print.printMenuInfo(hamburgerName, hamburgerPrice);
