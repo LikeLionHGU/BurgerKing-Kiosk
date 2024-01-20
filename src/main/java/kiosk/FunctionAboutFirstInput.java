@@ -38,26 +38,6 @@ public class FunctionAboutFirstInput {
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
 
-	public void checkInShoppingBasket(ArrayList<Item> food, int selectInt ){
-		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
-
-		boolean isBurgerExist = false;
-		for(int i = 0 ; i < Application.shoppingBasket.size(); i++){
-			if(food.get(selectInt-1).itemName.equals(Application.shoppingBasket.get(i).itemName)){
-				Application.shoppingBasket.get(i).count++;
-				isBurgerExist = true;
-				break;
-			}
-		}
-
-		if(!isBurgerExist) {
-			Item selectSide = new Item(food.get(selectInt-1).itemName, food.get(selectInt-1).price);
-			methodAboutShoppingBasket.addShoppingBasket(selectSide);
-		}
-
-		return;
-	}
-
 	public void printSideMenu(ArrayList<Item> side) {
 		ContactByUser contactByUser = new ContactByUser();
 		CheckException checkException = new CheckException();
@@ -134,6 +114,26 @@ public class FunctionAboutFirstInput {
 			default -> throw new IllegalArgumentException("장바구니 부분에서 잘못된 값을 입력하셨습니다.");
 		}
 	}
+
+	public void checkInShoppingBasket(ArrayList<Item> food, int selectInt){
+		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
+
+		boolean isFoodExist = false;
+		for(int i = 0 ; i < Application.shoppingBasket.size(); i++){
+			if(food.get(selectInt-1).itemName.equals(Application.shoppingBasket.get(i).itemName)){
+				Application.shoppingBasket.get(i).count++;
+				isFoodExist = true;
+				break;
+			}
+		}
+
+		if(!isFoodExist) {
+			Item selectSide = new Item(food.get(selectInt-1).itemName, food.get(selectInt-1).price);
+			methodAboutShoppingBasket.addShoppingBasket(selectSide);
+		}
+	}
+
+
 
 	public void exitProgram() {
 		System.out.println("프로그램을 종료하겠습니다.");
