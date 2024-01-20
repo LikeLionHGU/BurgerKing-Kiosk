@@ -8,19 +8,16 @@ public class Application {
     Controller controller = new Controller();
     Print print = new Print();
 
-    controller.initEveryInfo();
-
     while (controller.isExitCondition()) {
-      System.out.println("현재 가격 : "+controller.getTotalPrice());
+      System.out.println("현재 가격 : " + controller.getTotalPrice());
       print.printHomeMenu();
 
       controller.controlHomeMenu(input.getInputOfHomeMenu());
     }
+
     System.out.println("== 결제중입니다... ==");
     System.out.println("== ... ==");
 
-
-
-
+    controller.assignWaitingNumber();
   }
 }

@@ -55,4 +55,8 @@ public class Print {
     }
     System.out.println("\n ==========================");
   }
+
+  public void printWaitingNumber(int num) {
+    System.out.println("주문 번호는 : [" + num + "]번 입니다.");
+  }
 }

@@ -7,6 +7,7 @@ public class Controller {
 
   Print print = new Print();
   Input input = new Input();
+  Additional additional = new Additional();
 
   private boolean exitCondition = true;
 
@@ -31,7 +32,7 @@ public class Controller {
 
   private final int MAX_ORDER_NUMBER = 50;
 
-  public void initEveryInfo() {
+  public Controller() {
     hamburgerName = new String[] {"와퍼", "큐브 스테이크 와퍼", "콰트로 치즈 와퍼", "몬스터 와퍼", "통새우 와퍼", "블랙바베큐 와퍼"};
     hamburgerPrice = new int[] {6900, 8900, 7900, 9300, 7900, 9300};
 
@@ -211,6 +212,10 @@ public class Controller {
       System.out.println("\n === 한 메뉴는 최대 50개까지만 주문 가능합니다.  ===");
       System.exit(0);
     }
+  }
+
+  public void assignWaitingNumber() {
+    print.printWaitingNumber(additional.addOrderNumber() - 1);
   }
 
   public String[] getHamburgerName() {
