@@ -10,15 +10,16 @@ public class Application {
 
     controller.initEveryInfo();
 
-    while (controller.exitCondition) {
+    while (controller.isExitCondition()) {
       print.printHomeMenu();
 
       controller.controlHomeMenu(input.getInputOfHomeMenu());
     }
+    System.out.println("== 결제중입니다... ==");
+    System.out.println("== ... ==");
 
-    print.printOrderList(controller.getOrderNameList(),controller.getOrderNumList());
 
 
 
-}
+  }
 }

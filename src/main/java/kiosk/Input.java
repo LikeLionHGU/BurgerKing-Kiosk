@@ -12,6 +12,9 @@ public class Input {
   private int sidemeunOrder;
 
   private int drinkOrder;
+  private int shoppingOption;
+  private final int MAX_ORDER_NUMBER = 6;
+  private final int MAX_SHOPPING_ORDER_NUMBER = 3;
 
   public int getInputOfHomeMenu() {
     decision = scanner.nextInt();
@@ -21,16 +24,39 @@ public class Input {
 
   public int inputHamburgerOrder(){
     hamburgerOrder = scanner.nextInt();
+
+    if (isTheNumberOutOfRange(hamburgerOrder, MAX_ORDER_NUMBER)) {
+      System.exit(0);
+    }
+
     return hamburgerOrder;
   }
 
   public int inputSidemeunOrder(){
     sidemeunOrder = scanner.nextInt();
+
+    if (isTheNumberOutOfRange(hamburgerOrder, MAX_ORDER_NUMBER)) {
+      System.exit(0);
+    }
     return sidemeunOrder;
   }
 
   public int inputDrinkOrder(){
     drinkOrder = scanner.nextInt();
+    if (isTheNumberOutOfRange(drinkOrder, MAX_ORDER_NUMBER)) {
+      System.exit(0);
+    }
+
+    return drinkOrder;
+  }
+
+  public int inputShoppingOrder(){
+
+    shoppingOption = scanner.nextInt();
+    if (isTheNumberOutOfRange(shoppingOption, MAX_SHOPPING_ORDER_NUMBER)) {
+      System.exit(0);
+    }
+
     return drinkOrder;
   }
 

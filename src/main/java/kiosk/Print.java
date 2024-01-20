@@ -4,11 +4,8 @@ import java.util.List;
 
 public class Print {
 
-
-  Input input = new Input();
-
   public void printHomeMenu() {
-    System.out.println("=====홈=====");
+    System.out.println("\n=====홈=====");
     System.out.println("1. 햄버거");
     System.out.println("2. 사이드");
     System.out.println("3. 음료");
@@ -26,7 +23,7 @@ public class Print {
     System.out.println("\n메뉴를 골라주세요 (0을 선택 시 홈으로): ");
   }
 
-  public void printOrderList(List<String> nameList , List<Integer> numList) {
+  public void printOrderList(List<String> nameList , List<Integer> numList, int totalprice) {
 
     System.out.println("메뉴는 다음과 같습니다.");
 
@@ -36,6 +33,12 @@ public class Print {
     for (int i=0; i<nameListArr.length;i++){
       System.out.println(i+1+ ". "+nameListArr[i]+ " " + numListArr[i]+ "개");
     }
-  }
+    System.out.println("1. 주문하기");
+    System.out.println("2. 수량 조절하기");
+    System.out.println("3. 삭제하기");
 
+    System.out.println("총 가격은 " + totalprice + "원 입니다.\n");
+
+    System.out.print("메뉴를 골라주세요 (0을 선택 시 홈으로): ");
+  }
 }

@@ -8,7 +8,9 @@ public class Controller {
   Print print = new Print();
   Input input = new Input();
 
-  boolean exitCondition = true;
+
+  private boolean exitCondition =true;
+
   private String[] pickedMenu;
 
   private String[] hamburgerName;
@@ -25,6 +27,8 @@ public class Controller {
   private List<String> orderNameList;
 
   private List<Integer> orderNumList;
+
+
 
   public void initEveryInfo() {
     hamburgerName = new String[] {"와퍼", "큐브 스테이크 와퍼", "콰트로 치즈 와퍼", "몬스터 와퍼", "통새우 와퍼", "블랙바베큐 와퍼"};
@@ -51,7 +55,6 @@ public class Controller {
     if (paraDecision == 1) {
       controlHamburger();
     } else if (paraDecision == 2) {
-
       controlSidemenu();
     } else if (paraDecision == 3) {
       controlDrink();
@@ -63,52 +66,89 @@ public class Controller {
   }
 
   public void controlshoppingList() {
-    System.out.println("=== 장바구니 ===\n");
+    System.out.println("\n=== 장바구니 ===\n");
 
-    print.printOrderList(orderNameList,orderNumList);
+    print.printOrderList(orderNameList,orderNumList,totalPrice);
+    int result = input.inputShoppingOrder();
 
+    if(result ==0){
+      print.printHomeMenu();
+    }else if(result ==1){
+      exitCondition=false;
+    }else if(result ==2){
+      //수량 조절
+    }else if(result ==3){
+      //삭제
+    }
   }
 
   public void controlHamburger() {
-    System.out.println("=== 햄버거 ===");
+    System.out.println("\n=== 햄버거 ===");
     print.printMenuInfo(hamburgerName, hamburgerPrice);
 
     int result = input.inputHamburgerOrder();
-    totalPrice += hamburgerPrice[result - 1];
-    if (!orderNameList.contains(hamburgerName[result - 1])) {
+    if (result == 0) {
+      print.printHomeMenu();
+    } else {
+      totalPrice += hamburgerPrice[result - 1];
+      if (!orderNameList.contains(hamburgerName[result - 1])) {
 
-      orderNameList.add(hamburgerName[result - 1]);
+        orderNameList.add(hamburgerName[result - 1]);
+        orderNumList.add(1);
+
+      } else {
+        int index = orderNameList.indexOf(hamburgerName[result - 1]);
+        int currentValue = orderNumList.get(index);
+        orderNumList.set(index, currentValue + 1);
+      }
     }
-  }
+    }
 
   public void controlSidemenu() {
-    System.out.println("=== 사이드 ===");
+    System.out.println("\n=== 사이드 ===");
     print.printMenuInfo(sidemenuName, sidemenuPrice);
     int result = input.inputSidemeunOrder();
-    totalPrice += sidemenuPrice[result - 1];
-    if (!orderNameList.contains(sidemenuName[result - 1])) {
+    if (result == 0) {
+      print.printHomeMenu();
+    } else {
+      totalPrice += sidemenuPrice[result - 1];
+      if (!orderNameList.contains(sidemenuName[result - 1])) {
 
-      orderNameList.add(sidemenuName[result - 1]);
-      orderNumList.add(1);
+        orderNameList.add(sidemenuName[result - 1]);
+        orderNumList.add(1);
 
-    }else{
-      int index = orderNameList.indexOf(sidemenuName[result - 1]);
-      int currentValue = orderNumList.get(index);
-      orderNumList.set(index, currentValue + 1);
-//      orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1]), orderNumList.get(orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1])));
-//   orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1]), 1);
+      } else {
+        int index = orderNameList.indexOf(sidemenuName[result - 1]);
+        int currentValue = orderNumList.get(index);
+        orderNumList.set(index, currentValue + 1);
+        //      orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1]),
+        // orderNumList.get(orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1])));
+        //   orderNumList.set(orderNameList.indexOf(sidemenuName[result - 1]), 1);
+
+      }
     }
-  }
+    }
 
   public void controlDrink() {
-    System.out.println("=== 음료수 ===");
+    System.out.println("\n=== 음료수 ===");
     print.printMenuInfo(drinkName, drinkPrice);
     int result = input.inputDrinkOrder();
-    totalPrice += drinkPrice[result - 1];
-    if (!orderNameList.contains(drinkName[result - 1])) {
-      orderNameList.add(drinkName[result - 1]);
+    if (result == 0) {
+      print.printHomeMenu();
+    } else {
+      totalPrice += drinkPrice[result - 1];
+      if (!orderNameList.contains(drinkName[result - 1])) {
+
+        orderNameList.add(drinkName[result - 1]);
+        orderNumList.add(1);
+
+      } else {
+        int index = orderNameList.indexOf(drinkName[result - 1]);
+        int currentValue = orderNumList.get(index);
+        orderNumList.set(index, currentValue + 1);
+      }
     }
-  }
+    }
 
   public String[] getHamburgerName() {
     return hamburgerName;
@@ -188,5 +228,13 @@ public class Controller {
 
   public void setOrderNumList(List<Integer> orderNumList) {
     this.orderNumList = orderNumList;
+  }
+
+  public boolean isExitCondition() {
+    return exitCondition;
+  }
+
+  public void setExitCondition(boolean exitCondition) {
+    this.exitCondition = exitCondition;
   }
 }
