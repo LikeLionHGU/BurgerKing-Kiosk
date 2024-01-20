@@ -90,6 +90,8 @@ public class FunctionAboutFirstInput {
 		ContactByUser contactByUser = new ContactByUser();
 		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
 
+		if(Application.shoppingBasket.isEmpty())    throw new IllegalArgumentException("장바구니가 비었습니다. 접근할 수 없습니다.");
+
 		System.out.println("===== 장바구니 =====");
 
 		printShoppingBasket();

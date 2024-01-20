@@ -8,4 +8,8 @@ public class CheckException {
 	public void checkReconfirmInputByUser(int input){
 		if((input != 0) && (input != 1)) throw new IllegalArgumentException("삭제 재확인 부분에서 잘못된 입력을 하셨습니다.");
 	}
+
+	public void checkSelectIndexByUserRange(int index){
+		if(index < 0 || Application.shoppingBasket.size()-1 < index ) throw new IllegalArgumentException("메뉴 번호를 잘못 입력하셨습니다. 처음 주문창으로 돌아갑니다.");
+	}
 }

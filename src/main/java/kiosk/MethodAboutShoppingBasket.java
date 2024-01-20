@@ -33,13 +33,18 @@ public class MethodAboutShoppingBasket {
 		System.out.println("현재 장바구니\n");
 		functionAboutFirstInput.printShoppingBasket();;
 
-		// todo: 여기서 ShoppingBasket.size()-1 더 큰 수 입력 시 error
 		int deleteMenuIndex = selectIndexByUser("삭제할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): ");
 		if(deleteMenuIndex == 0) return;
 
 		int decideByUser = reconfirmByUser();
 		if(decideByUser == 1) Application.shoppingBasket.remove(deleteMenuIndex-1);
 	}
+
+
+
+
+
+
 
 	public int reconfirmByUser(){
 		ContactByUser contactByUser = new ContactByUser();
@@ -52,18 +57,21 @@ public class MethodAboutShoppingBasket {
 		return input;
 	}
 
-
-
-	public int selectIndexByUser(String temp){
+	public int selectIndexByUser(String message){
 		ContactByUser contactByUser = new ContactByUser();
+		CheckException checkException = new CheckException();
+		System.out.print(message);
 
-		System.out.print(temp);
-		return contactByUser.getIntByUser();
+		int index = contactByUser.getIntByUser();
+		checkException.checkSelectIndexByUserRange(index);
+
+		return index;
   }
+
+
 
 	public void addShoppingBasket(Item food){
 		Application.shoppingBasket.add(new Item(food.itemName, food.price));
 	}
-
 
 }
