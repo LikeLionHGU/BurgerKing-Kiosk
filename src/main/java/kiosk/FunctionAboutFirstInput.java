@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class FunctionAboutFirstInput {
 	public static final int MinInputNum = 0;
 	public static final int MaxInputNum = 6;
+
 	public void printHome(){
 		System.out.println("=====홈=====");
 		System.out.println("1. 햄버거");
@@ -41,7 +42,6 @@ public class FunctionAboutFirstInput {
 	public void printSideMenu(ArrayList<Item> side) {
 		ContactByUser contactByUser = new ContactByUser();
 		CheckException checkException = new CheckException();
-		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
 
 		System.out.println("=====사이드 메뉴=====");
 		System.out.println("1. 너겟킹 (2500원)");
@@ -55,7 +55,7 @@ public class FunctionAboutFirstInput {
 		int selectInt = contactByUser.getIntByUser();
 		checkException.checkInputRange(selectInt);
 
-		if(selectInt == MinInputNum)  return;
+		if(selectInt == MinInputNum)  return;   // 홈으로!
 
 		editCountInShoppingBasket(side, selectInt);
 
@@ -65,7 +65,6 @@ public class FunctionAboutFirstInput {
 	public void printDrinkMenu(ArrayList<Item> drink) {
 		ContactByUser contactByUser = new ContactByUser();
 		CheckException checkException = new CheckException();
-		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
 
 		System.out.println("=====음료 메뉴=====");
 		System.out.println("1. 코카콜라 (2000원)");
@@ -94,7 +93,6 @@ public class FunctionAboutFirstInput {
 
 		printShoppingBasket();
 		int total = calculateTotal();
-
 
 		System.out.println("1. 주문하기");
 		System.out.println("2. 수량 조절하기");

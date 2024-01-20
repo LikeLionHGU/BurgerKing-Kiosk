@@ -25,12 +25,12 @@ public class MethodAboutShoppingBasket {
 		CheckException checkException = new CheckException();
 
 		System.out.print("변경할 수량을 입력하세요:");
-		int chageCount = contactByUser.getIntByUser();
+		int changeCount = contactByUser.getIntByUser();
 
-		checkException.checkCountByUserRangeMax(chageCount);
-		checkException.checkCountByUserRangeMin(chageCount);
+		checkException.checkCountByUserRangeMax(changeCount);
+		checkException.checkCountByUserRangeMin(changeCount);
 
-		Application.shoppingBasket.get(changeMenuIndex-1).count = chageCount;
+		Application.shoppingBasket.get(changeMenuIndex-1).count = changeCount;
 
 	}
 
