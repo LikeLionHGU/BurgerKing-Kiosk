@@ -101,7 +101,6 @@ public class Application {
         shoppingBasket.get(changeMenuIndex-1).count = chageCount;
     }
 
-    // ToDo : 제대로 작동 안 함. 오류 고치기.
     public static void cancelOrder(){
         System.out.println("===== 삭제하기 =====\n");
         System.out.println("현재 장바구니\n");
@@ -115,7 +114,8 @@ public class Application {
         int decideInputNum = getIntByUser();
 
         if(decideInputNum == 0) return;
-            else if(deleteIndex == 1) shoppingBasket.remove(deleteIndex-1);
+        else if(decideInputNum == 1) shoppingBasket.remove(deleteIndex-1);
+
     }
 
 
