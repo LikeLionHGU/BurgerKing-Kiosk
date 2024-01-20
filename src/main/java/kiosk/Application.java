@@ -1,8 +1,8 @@
 package kiosk;
 import java.util.ArrayList;
 
-// todo: 동일 기능 메소드로 묶기
 // todo: 예외들 확인하기
+// todo: testcase 만들기
 
 public class Application {
     public static ArrayList<Item> shoppingBasket = new ArrayList<>();

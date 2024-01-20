@@ -13,4 +13,8 @@ public class CheckException {
 		if(index < 0 || Application.shoppingBasket.size() < index ) throw new IllegalArgumentException("메뉴 번호를 잘못 입력하셨습니다. 처음 주문창으로 돌아갑니다.");
 	}
 
+	public void checkCountByUserRange(int changeCount){
+		if(changeCount < 1 || 50 < changeCount) throw new IllegalArgumentException("장바구니에 담을 수 있는 단일품목의 최대 수량은 50개, 최소 수량은 1개입니다. 주문을 처음부터 다시 해주시길 바랍니다.");
+	}
+
 }

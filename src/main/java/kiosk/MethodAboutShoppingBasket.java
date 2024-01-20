@@ -17,12 +17,22 @@ public class MethodAboutShoppingBasket {
 		int changeMenuIndex = contactByUser.selectIndexByUser("수량을 조절할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): ");
 		if(changeMenuIndex == 0) return;
 
-		// todo: 이거 최대가 50인 걸로 exception처리 -> 글귀 "장바구니에 담을 수 있는 단일품목의 최대 수량은 50개, 최소 수량은 1개입니다. 주문을 처음부터 다시 해주시길 바랍니다." 하고 exception띄우기
+		getChangeMenuCountByUser(changeMenuIndex);
+	}
+
+	public void getChangeMenuCountByUser(int changeMenuIndex){
+		ContactByUser contactByUser = new ContactByUser();
+		CheckException checkException = new CheckException();
+
 		System.out.print("변경할 수량을 입력하세요:");
 		int chageCount = contactByUser.getIntByUser();
+
+		checkException.checkCountByUserRange(chageCount);
+
 		Application.shoppingBasket.get(changeMenuIndex-1).count = chageCount;
 
 	}
+
 
 	public void cancelOrder(){
 		ContactByUser contactByUser = new ContactByUser();
