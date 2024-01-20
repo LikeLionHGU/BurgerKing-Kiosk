@@ -63,6 +63,7 @@ public class Input {
 
   public int inputIndexOfOrder(int length) {
     shoppingOption = scanner.nextInt();
+
     if (isTheNumberOutOfRange(shoppingOption, length)) {
       System.exit(0);
     }
@@ -71,7 +72,7 @@ public class Input {
   }
 
   public int inputNumberOfShopping() {
-
+    System.out.println("변경할 수량을 입력하세요:\n");
     shoppingOption = scanner.nextInt();
 
     if (isMoreThanFifty(shoppingOption)) {

@@ -33,6 +33,7 @@ public class Print {
     for (int i = 0; i < nameListArr.length; i++) {
       System.out.println(i + 1 + ". " + nameListArr[i] + " " + numListArr[i] + "개");
     }
+    System.out.println("\n ==========================");
     System.out.println("\n1. 주문하기");
     System.out.println("2. 수량 조절하기");
     System.out.println("3. 삭제하기");
@@ -52,10 +53,10 @@ public class Print {
     for (int i = 0; i < nameListArr.length; i++) {
       System.out.println(i + 1 + ". " + nameListArr[i] + " " + numListArr[i] + "개");
     }
-    System.out.println("\n1. 주문하기");
-    System.out.println("2. 수량 조절하기");
-    System.out.println("3. 삭제하기");
+    System.out.println("\n ==========================");
 
-    System.out.print("메뉴를 골라주세요 (0을 선택 시 홈으로): ");
+
+    System.out.println("수량을 조절할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): \n");
+
   }
 }
