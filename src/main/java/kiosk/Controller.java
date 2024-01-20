@@ -47,7 +47,7 @@ public class Controller {
   }
 
   public void controlHomeMenu(int paraDecision) {
-    System.out.println("현재 가격 :" + totalPrice);
+
     if (input.isTheNumberOutOfRange(paraDecision, 5)) {
       System.exit(0);
     }
@@ -78,13 +78,38 @@ public class Controller {
     } else if (result == 2) {
       controlNumOfOrder();
     } else if (result == 3) {
-      // 삭제
+      controlDeleteOrder();
     }
   }
+
+
+  public void controlDeleteOrder(){
+    System.out.println("\n == 삭제하기 == ");
+    print.printOrderList(orderNameList, orderNumList);
+    System.out.println("삭제할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): \n");
+
+    int index = input.inputIndexOfOrder(orderNameList.size());
+
+    if(index ==0){
+      print.printHomeMenu();
+    }
+
+    int confirmDelete = input.comfirmToDelete(orderNameList.get(index - 1));
+
+    orderNumList.remove(index-1);
+    orderPriceList.remove(index-1);
+    orderNameList.remove(index-1);
+    System.out.println("삭제되었습니다.");
+    recalculateTotalPrice();
+    System.out.println("재계산 완료되었습니다.");
+  }
+
 
   public void controlNumOfOrder() {
     System.out.println("\n == 수량 조절하기 == ");
     print.printOrderList(orderNameList, orderNumList);
+    System.out.println("수량을 조절할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): \n");
+
     int index = input.inputIndexOfOrder(orderNameList.size());
 
     if(index ==0){
@@ -175,6 +200,17 @@ public class Controller {
     }
     totalPrice = sum;
   }
+
+
+
+
+
+
+
+
+
+
+
 
   public String[] getHamburgerName() {
     return hamburgerName;

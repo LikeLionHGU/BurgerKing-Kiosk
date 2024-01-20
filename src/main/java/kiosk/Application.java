@@ -11,6 +11,7 @@ public class Application {
     controller.initEveryInfo();
 
     while (controller.isExitCondition()) {
+      System.out.println("현재 가격 : "+controller.getTotalPrice());
       print.printHomeMenu();
 
       controller.controlHomeMenu(input.getInputOfHomeMenu());

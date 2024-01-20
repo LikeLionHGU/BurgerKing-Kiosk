@@ -56,7 +56,6 @@ public class Print {
     System.out.println("\n ==========================");
 
 
-    System.out.println("수량을 조절할 메뉴 번호를 선택하세요 (0을 선택 시 홈으로): \n");
 
   }
 }
