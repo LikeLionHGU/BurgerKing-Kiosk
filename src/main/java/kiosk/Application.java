@@ -3,6 +3,10 @@ package kiosk;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// todo: 작동 제대로 하는지 확인
+// todo: 예외들 확인하기
+// todo: class단위로 파일 구분하기
+
 class Item{
     String itemName;
     int price;
@@ -65,10 +69,10 @@ public class Application {
 
         System.out.println("총 가격 :  " + total + "원\n");
         System.out.print("메뉴 선택 (0을 선택 시 홈으로): ");
-        int input = getIntByUser();
+        int selectInt = getIntByUser();
+	    if(selectInt == MinInputNum)  return;
 
-
-        switch(input){
+        switch(selectInt){
             case 1 -> order();
             case 2 -> controlCount();
             case 3 -> cancelOrder();
@@ -170,8 +174,9 @@ public class Application {
         int selectInt = getIntByUser();
         checkInputRange(selectInt);
 
-        Item selectSide = new Item(side.get(selectInt+1).itemName, side.get(selectInt+1).price, side.get(selectInt+1).count);
-        if(selectInt != MinInputNum) addShoppingBasket(selectSide);
+	    if(selectInt == MinInputNum)  return;
+	    Item selectSide = new Item(side.get(selectInt-1).itemName, side.get(selectInt-1).price, side.get(selectInt-1).count);
+        addShoppingBasket(selectSide);
 
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
     }
@@ -189,8 +194,9 @@ public class Application {
         int selectInt = getIntByUser();
         checkInputRange(selectInt);
 
-        Item selectSide = new Item(drink.get(selectInt+1).itemName, drink.get(selectInt+1).price, drink.get(selectInt+1).count);
-        if(selectInt != MinInputNum) addShoppingBasket(selectSide);
+        if(selectInt == MinInputNum)  return;
+        Item selectSide = new Item(drink.get(selectInt-1).itemName, drink.get(selectInt-1).price, drink.get(selectInt-1).count);
+        addShoppingBasket(selectSide);
 
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
     }
@@ -212,8 +218,9 @@ public class Application {
         int selectInt = getIntByUser();
         checkInputRange(selectInt);
 
-        Item selectSide = new Item(burger.get(selectInt+1).itemName, burger.get(selectInt+1).price, burger.get(selectInt+1).count);
-        if(selectInt != MinInputNum) addShoppingBasket(selectSide);
+	    if(selectInt == MinInputNum)  return;
+	    Item selectSide = new Item(burger.get(selectInt-1).itemName, burger.get(selectInt-1).price, burger.get(selectInt-1).count);
+        addShoppingBasket(selectSide);
 
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
     }
