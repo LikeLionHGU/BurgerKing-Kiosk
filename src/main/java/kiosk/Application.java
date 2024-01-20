@@ -3,9 +3,11 @@ package kiosk;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// todo: 작동 제대로 하는지 확인
+// todo: 작동 제대로 하는지 확인   (확인 완료 -> 메뉴 창에서 같은 메뉴가 선정될 경우, 해당 메뉴를 추가하는 것이 아니라, count만 +1을 해주는 기능을 만들어야할 듯!
 // todo: 예외들 확인하기
+// todo: 동일 기능하는 것들 refactoring 하기
 // todo: class단위로 파일 구분하기
+
 
 class Item{
     String itemName;
@@ -99,6 +101,7 @@ public class Application {
         shoppingBasket.get(changeMenuIndex-1).count = chageCount;
     }
 
+    // ToDo : 제대로 작동 안 함. 오류 고치기.
     public static void cancelOrder(){
         System.out.println("===== 삭제하기 =====\n");
         System.out.println("현재 장바구니\n");
@@ -175,8 +178,20 @@ public class Application {
         checkInputRange(selectInt);
 
 	    if(selectInt == MinInputNum)  return;
-	    Item selectSide = new Item(side.get(selectInt-1).itemName, side.get(selectInt-1).price, side.get(selectInt-1).count);
-        addShoppingBasket(selectSide);
+
+        boolean isSideExist = false;
+        for(int i = 0 ; i < shoppingBasket.size(); i++){
+            if(side.get(selectInt-1).itemName.equals(shoppingBasket.get(i).itemName)){
+                shoppingBasket.get(i).count++;
+                isSideExist = true;
+                break;
+            }
+        }
+
+        if(!isSideExist) {
+            Item selectSide = new Item(side.get(selectInt-1).itemName, side.get(selectInt-1).price, side.get(selectInt-1).count);
+            addShoppingBasket(selectSide);
+        }
 
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
     }
@@ -195,8 +210,20 @@ public class Application {
         checkInputRange(selectInt);
 
         if(selectInt == MinInputNum)  return;
-        Item selectSide = new Item(drink.get(selectInt-1).itemName, drink.get(selectInt-1).price, drink.get(selectInt-1).count);
-        addShoppingBasket(selectSide);
+
+        boolean isDrinkExist = false;
+        for(int i = 0 ; i < shoppingBasket.size(); i++){
+            if(drink.get(selectInt-1).itemName.equals(shoppingBasket.get(i).itemName)){
+                shoppingBasket.get(i).count++;
+                isDrinkExist = true;
+                break;
+            }
+        }
+
+        if(!isDrinkExist) {
+            Item selectSide = new Item(drink.get(selectInt-1).itemName, drink.get(selectInt-1).price, drink.get(selectInt-1).count);
+            addShoppingBasket(selectSide);
+        }
 
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
     }
@@ -219,8 +246,20 @@ public class Application {
         checkInputRange(selectInt);
 
 	    if(selectInt == MinInputNum)  return;
-	    Item selectSide = new Item(burger.get(selectInt-1).itemName, burger.get(selectInt-1).price, burger.get(selectInt-1).count);
-        addShoppingBasket(selectSide);
+
+        boolean isBurgerExist = false;
+        for(int i = 0 ; i < shoppingBasket.size(); i++){
+            if(burger.get(selectInt-1).itemName.equals(shoppingBasket.get(i).itemName)){
+                shoppingBasket.get(i).count++;
+                isBurgerExist = true;
+                break;
+            }
+        }
+
+        if(!isBurgerExist) {
+            Item selectSide = new Item(burger.get(selectInt-1).itemName, burger.get(selectInt-1).price, burger.get(selectInt-1).count);
+            addShoppingBasket(selectSide);
+        }
 
         System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
     }
@@ -236,3 +275,5 @@ public class Application {
     }
 
 }
+
+
