@@ -15,7 +15,11 @@ public class FunctionAboutFirstInput {
 		System.out.print("메뉴선택:");
 	}
 
-	public static void printBurgerMenu(ArrayList<Item> burger) {
+	public void printBurgerMenu(ArrayList<Item> burger) {
+		ContactByUser contactByUser = new ContactByUser();
+		CheckException checkException = new CheckException();
+		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
+
 		System.out.println("=====햄버거 메뉴=====");
 		System.out.println("1. 와퍼 (6900원)");
 		System.out.println("2. 큐브 스테이크 와퍼 (8900원)");
@@ -25,8 +29,8 @@ public class FunctionAboutFirstInput {
 		System.out.println("6. 블랙바베큐 와퍼 (9300원)\n");
 		System.out.print("메뉴선택 (0을 선택 시 홈으로): ");
 
-		int selectInt = ContactByUser.getIntByUser();
-		CheckException.checkInputRange(selectInt);
+		int selectInt = contactByUser.getIntByUser();
+		checkException.checkInputRange(selectInt);
 
 		if(selectInt == MinInputNum)  return;
 
@@ -41,13 +45,17 @@ public class FunctionAboutFirstInput {
 
 		if(!isBurgerExist) {
 			Item selectSide = new Item(burger.get(selectInt-1).itemName, burger.get(selectInt-1).price);
-			MethodAboutShoppingBasket.addShoppingBasket(selectSide);
+			methodAboutShoppingBasket.addShoppingBasket(selectSide);
 		}
 
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
 
-	public static void printSideMenu(ArrayList<Item> side) {
+	public void printSideMenu(ArrayList<Item> side) {
+		ContactByUser contactByUser = new ContactByUser();
+		CheckException checkException = new CheckException();
+		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
+
 		System.out.println("=====사이드 메뉴=====");
 		System.out.println("1. 너겟킹 (2500원)");
 		System.out.println("2. 해쉬 브라운 (1800원)");
@@ -57,8 +65,8 @@ public class FunctionAboutFirstInput {
 		System.out.println("6. 감자튀김 (2000원)\n");
 		System.out.print("메뉴선택 (0을 선택 시 홈으로):");
 
-		int selectInt = ContactByUser.getIntByUser();
-		CheckException.checkInputRange(selectInt);
+		int selectInt = contactByUser.getIntByUser();
+		checkException.checkInputRange(selectInt);
 
 		if(selectInt == MinInputNum)  return;
 
@@ -73,13 +81,17 @@ public class FunctionAboutFirstInput {
 
 		if(!isSideExist) {
 			Item selectSide = new Item(side.get(selectInt-1).itemName, side.get(selectInt-1).price);
-			MethodAboutShoppingBasket.addShoppingBasket(selectSide);
+			methodAboutShoppingBasket.addShoppingBasket(selectSide);
 		}
 
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
 
-	public static void printDrinkMenu(ArrayList<Item> drink) {
+	public void printDrinkMenu(ArrayList<Item> drink) {
+		ContactByUser contactByUser = new ContactByUser();
+		CheckException checkException = new CheckException();
+		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
+
 		System.out.println("=====음료 메뉴=====");
 		System.out.println("1. 코카콜라 (2000원)");
 		System.out.println("2. 코카콜라 제로 (2000원)");
@@ -89,8 +101,8 @@ public class FunctionAboutFirstInput {
 		System.out.println("6. 스프라이트 제로 (2000원)");
 		System.out.print("메뉴선택 (0을 선택 시 홈으로):");
 
-		int selectInt = ContactByUser.getIntByUser();
-		CheckException.checkInputRange(selectInt);
+		int selectInt = contactByUser.getIntByUser();
+		checkException.checkInputRange(selectInt);
 
 		if(selectInt == MinInputNum)  return;
 
@@ -105,13 +117,16 @@ public class FunctionAboutFirstInput {
 
 		if(!isDrinkExist) {
 			Item selectSide = new Item(drink.get(selectInt-1).itemName, drink.get(selectInt-1).price);
-			MethodAboutShoppingBasket.addShoppingBasket(selectSide);
+			methodAboutShoppingBasket.addShoppingBasket(selectSide);
 		}
 
 		System.out.println("선택하신 메뉴가 정상적으로 추가되었습니다.\n");
 	}
 
-	public static void shoppingBasketOption() {
+	public void shoppingBasketOption() {
+		ContactByUser contactByUser = new ContactByUser();
+		MethodAboutShoppingBasket methodAboutShoppingBasket = new MethodAboutShoppingBasket();
+
 		int total = 0;
 		System.out.println("===== 장바구니 =====\n");
 		for(Item it : Application.shoppingBasket){
@@ -126,18 +141,18 @@ public class FunctionAboutFirstInput {
 
 		System.out.println("총 가격 :  " + total + "원\n");
 		System.out.print("메뉴 선택 (0을 선택 시 홈으로): ");
-		int selectInt = ContactByUser.getIntByUser();
+		int selectInt = contactByUser.getIntByUser();
 		if(selectInt == MinInputNum)  return;
 
 		switch(selectInt){
-			case 1 -> MethodAboutShoppingBasket.order();
-			case 2 -> MethodAboutShoppingBasket.controlCount();
-			case 3 -> MethodAboutShoppingBasket.cancelOrder();
+			case 1 -> methodAboutShoppingBasket.order();
+			case 2 -> methodAboutShoppingBasket.controlCount();
+			case 3 -> methodAboutShoppingBasket.cancelOrder();
 			default -> throw new IllegalArgumentException("장바구니 부분에서 잘못된 값을 입력하셨습니다.");
 		}
 	}
 
-	public static void exitProgram() {
+	public void exitProgram() {
 		System.out.println("프로그램을 종료하겠습니다.");
 		System.exit(0);
 	}

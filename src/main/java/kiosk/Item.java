@@ -9,6 +9,5 @@ public class Item {
 		this.itemName = itemName;
 		this.price = price;
 		this.count = 1;
-
 	}
 }
