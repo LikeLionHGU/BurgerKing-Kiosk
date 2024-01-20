@@ -119,6 +119,7 @@ public class Controller {
 
     orderNumList.set(index - 1, num);
     recalculateTotalPrice();
+    controlshoppingList();
   }
 
   public void controlHamburger() {
