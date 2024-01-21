@@ -224,6 +224,16 @@ public class Controller {
     }
   }
 
+
+
+
+
+
+
+
+
+
+
   public void assignWaitingNumber() {
     print.printWaitingNumber(additional.addOrderNumber() - 1);
   }
