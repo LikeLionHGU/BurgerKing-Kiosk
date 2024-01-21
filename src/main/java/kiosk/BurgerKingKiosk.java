@@ -1,9 +1,7 @@
 package kiosk;
 
-import java.util.ArrayList;
-
 public class BurgerKingKiosk {
-  private ArrayList<Order> basket = new ArrayList<>();
+  private final Basket basket = new Basket();
 
   public void run() {
     BurgerKingKioskIO.printWelcomeMessage();
@@ -42,14 +40,16 @@ public class BurgerKingKiosk {
   }
 
   private void addOrder(Menu menu) {
-    for (Order order : basket) {
-      if (order.getName().equals(menu.getName())) {
+    for (Order order : basket.getOrderList()) {
+      if (order.getMenu() == menu) {
         order.addCount(1);
         BurgerKingKioskIO.printAddedOrder(order);
         return;
       }
     }
-    basket.add(BurgerKingKioskIO.printAddedOrder(new Order(menu, 1)));
+    Order order = new Order(menu, 1);
+    basket.addOrder(order);
+    BurgerKingKioskIO.printAddedOrder(order);
   }
 
   private int basketManagement() {
@@ -73,11 +73,11 @@ public class BurgerKingKiosk {
   }
 
   private int deleteOrder() {
-    int index = BurgerKingKioskIO.selectOrderFromBasketToChangeDelete(basket);
+    int index = BurgerKingKioskIO.selectOrderFromBasketToDelete(basket);
     if (index == 0) return 0; // 0을 선택하면 홈으로
-    if(BurgerKingKioskIO.checkDeleteOk()==1) {
-      BurgerKingKioskIO.deleteOrderComplete(basket.get(index - 1));
-      basket.remove(index - 1);
+    if (BurgerKingKioskIO.checkDeleteOk() == 1) { // 삭제 확인이 1일 경우 삭제
+      BurgerKingKioskIO.deleteOrderComplete(basket.getOrder(index - 1));
+      basket.removeOrder(index - 1);
     }
     return 1;
   }
@@ -86,12 +86,8 @@ public class BurgerKingKiosk {
     int index = BurgerKingKioskIO.selectOrderFromBasketToChangeCount(basket);
     if (index == 0) return 0; // 0을 선택하면 홈으로
     int count = BurgerKingKioskIO.selectCount();
-    setOrderCount(index - 1, count);
+    basket.setOrderCount(index-1, count);
+    BurgerKingKioskIO.setOrderCountComplete(basket.getOrder(index-1), count);
     return 1;
-  }
-
-  private void setOrderCount(int index, int count) {
-    basket.get(index).setCount(count);
-    BurgerKingKioskIO.setOrderCountComplete(basket.get(index), count);
   }
 }

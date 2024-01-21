@@ -41,14 +41,35 @@ public class BurgerKingMenu {
   }
 
   public static Hamburger getHamburger(int index) {
+    checkIndexValidation(index, hamburgerList.length);
     return hamburgerList[index];
   }
 
   public static SideMenu getSideMenu(int index) {
+    checkIndexValidation(index, sideMenuList.length);
     return sideMenuList[index];
   }
 
   public static Beverage getBeverage(int index) {
+    checkIndexValidation(index, beverageList.length);
     return beverageList[index];
+  }
+
+  private static void checkIndexValidation(int index, int length) {
+    if (index < 0 || index >= length) {
+      throw new IllegalArgumentException("메뉴 번호는 1부터 " + length + "까지 입니다.");
+    }
+  }
+
+  public static int getHamburgerListLength() {
+    return hamburgerList.length;
+  }
+
+  public static int getSideMenuListLength() {
+    return sideMenuList.length;
+  }
+
+  public static int getBeverageListLength() {
+    return beverageList.length;
   }
 }
