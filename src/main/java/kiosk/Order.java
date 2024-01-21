@@ -10,6 +10,7 @@ public class Order {
 
   public Order(Menu menu, int count) {
     this.menu = menu;
+    checkValidationCount(count);
     this.count = count;
   }
 
