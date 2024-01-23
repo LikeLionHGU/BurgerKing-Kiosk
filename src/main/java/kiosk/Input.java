@@ -96,34 +96,35 @@ public class Input {
   }
 
   public boolean isMoreThanFifty(int number) {
-    boolean checkNum = true;
-    try {
-      if (number > MAX_NUMBER_OF_ORDER) {
-        throw new IllegalArgumentException();
-      } else {
-        checkNum = false;
-        return checkNum;
-      }
-    } catch (IllegalArgumentException e) {
-      System.out.println("\n === 최대 주문 가능 개수는 [ 50개 ] 입니다. ===");
+    if (number > MAX_NUMBER_OF_ORDER) {
+      throw new IllegalArgumentException("\n === 최대 주문 가능 개수는 [ 50개 ] 입니다. ===");
+    } else {
+      return false;
     }
-    return checkNum;
   }
 
   public boolean isTheNumberOutOfRange(int number, int max) {
-    boolean checkRange = true;
-    try {
-      if (number > max || number < 0) {
-        throw new IllegalArgumentException();
-      } else {
-        checkRange = false;
-        return checkRange;
-      }
-    } catch (IllegalArgumentException e) {
-      System.out.println("\n === 올바르지 않은 입력입니다. ===");
+    if (number > max || number < 0) {
+      throw new IllegalArgumentException("\n === 올바르지 않은 입력입니다. ===");
+    } else {
+      return false;
     }
-    return checkRange;
   }
+
+
+//  public boolean isTheNumberOutOfRange(int number, int max) {
+//    boolean checkRange = true;
+//    try {
+//      if (number > max || number < 0) {
+//        throw new IllegalArgumentException("\n === 올바르지 않은 입력입니다. ===");
+//      } else {
+//        checkRange = false;
+//        return checkRange;
+//      }
+//    } catch (IllegalArgumentException ignored) {
+//    }
+//    return checkRange;
+//  }
 
   public int getDecision() {
     return decision;

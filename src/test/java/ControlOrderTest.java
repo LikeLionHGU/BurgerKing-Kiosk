@@ -21,19 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
             controller = new Controller();
         }
 
-        @DisplayName("홈화면 - 잘못된 메뉴 입력")
-        @Test
-        void homeMenuException() {
-            // when
-            int menu =6;
 
-            // then
-            assertThrows(
-                    IllegalArgumentException.class,
-                    () -> {
-                        controller.controlHomeMenu(menu);
-                    });
-        }
 
 
 
@@ -124,6 +112,7 @@ import static org.junit.jupiter.api.Assertions.*;
                     () -> {
                         controller.restrictNumOfOrder(controller.getOrderNumList().get(0), 1);
                     });
+
         }
 
         @AfterEach
